@@ -625,8 +625,7 @@ hr:after {
 	}
 
 	html, body {
-		background-attachment: fixed;
-		background-size: 100%;
+		background-image: none;
 	}
 }
 
