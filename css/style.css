@@ -485,88 +485,6 @@ hr:after {
 	display: none;
 }
 
-
-@media only screen and (max-width: 1024px){
-	.hide{
-		display: none;
-	}
-	.big{
-		font-size: 3em;
-	}
-	.showlogo{
-		display: inline!important;
-		width: 30px!important;
-	}
-
-	.navbar{
-		padding-left: 40px;
-	}
-
-	.logo-nav{
-		width: 125px;
-	}
-
-	.nav-item{
-		text-align: left;
-	}
-
-	.nav-item{
-		width: fit-content;
-	}
-
-	h1{
-		font-size: xx-large;
-	}
-
-	h2{
-		font-size: xx-large;
-	}
-
-	h3{
-		font-size: xx-large;
-	}
-
-	p{
-		font-size: small;
-	}
-
-	.logo-footer{
-		width: 100%;
-		height: auto;
-	}
-
-	.phrase{
-		width: 90%;
-	}
-
-	svg text {
-	font-size: 150px;
-}
-
-
-}
-
-/* width */
-::-webkit-scrollbar {
-	width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-	background: #1b459a;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-	background: #f2f2f2;
-	padding-top: 4px!important;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-	background: #eabd50;
-}
-
 .gallery{
 	position: relative;
 	height: fit-content;
@@ -651,3 +569,89 @@ hr:after {
 .cardx:hover{
 	transform: translateY(-5px);
 }
+
+
+@media only screen and (max-width: 1024px){
+	.hide{
+		display: none;
+	}
+	.big{
+		font-size: 3em;
+	}
+	.showlogo{
+		display: inline!important;
+		width: 30px!important;
+	}
+
+	.navbar{
+		padding-left: 40px;
+	}
+
+	.logo-nav{
+		width: 125px;
+	}
+
+	.nav-item{
+		text-align: left;
+	}
+
+	.nav-item{
+		width: fit-content;
+	}
+
+	h1{
+		font-size: xx-large;
+	}
+
+	h2{
+		font-size: xx-large;
+	}
+
+	h3{
+		font-size: xx-large;
+	}
+
+	p{
+		font-size: small;
+	}
+
+	.logo-footer{
+		width: 100%;
+		height: auto;
+	}
+
+	.phrase{
+		width: 90%;
+	}
+
+	svg text {
+		font-size: 150px;
+	}
+
+	html, body {
+		background-image: url("../img/backgrounds/bg.jpg");
+		background-attachment: local;
+	}
+}
+
+/* width */
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: #1b459a;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #f2f2f2;
+	padding-top: 4px!important;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #eabd50;
+}
+
