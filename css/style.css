@@ -625,9 +625,8 @@ hr:after {
 	}
 
 	html, body {
-		background-image: url("../img/backgrounds/bg.jpg");
-		background-attachment: local;
-		background-size: auto!important;
+		background-attachment: fixed;
+		background-size: contain;
 	}
 }
 
