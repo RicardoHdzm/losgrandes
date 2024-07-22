@@ -10,7 +10,7 @@ gsap.registerPlugin('ScrollTrigger');
             attr: {
                 startOffset: '-2.6%'
             },
-            duration: 6,
+            duration: 15,
             ease: 'none',
             repeat: -1,
         });
