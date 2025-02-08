@@ -248,7 +248,8 @@ input{
   }
 
   .home{
-    height: 75vh;
+    margin-top: 7.5rem;
+    height: fit-content;
   }
 
   .fa-regular{
