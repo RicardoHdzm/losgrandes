@@ -16,8 +16,8 @@ section {
 }
 
 ::selection {
-  color: #f5a201;
-  background: #072736;
+  background-color: #f5a201;
+  color: #072736;
 }
 
 /* RESET */
