@@ -327,7 +327,11 @@ small{
   h3, h4, p {
     font-size: 1.2rem;
   }
-s
+
+  .footer h3{
+    font-size: .8rem;
+  }
+  
   .btn, .alt-bg .btn, .rsrv .btn {
     font-size: 1.5rem;
   }
