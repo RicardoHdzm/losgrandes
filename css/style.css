@@ -201,8 +201,8 @@ span{
 
 .alt-bg, .footer, .navbar{
   background-image: url("../img/img/bg-2.jpeg");
-  background-size: auto;
-  background-repeat: repeat;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 #menu, #location, #join{
@@ -225,7 +225,6 @@ span{
   background-color: #fff;
   color: #F1F7EE!important;
   padding-top: 5rem;
-  padding-bottom: 5rem;
 }
 
 .footer h2{
@@ -328,7 +327,7 @@ small{
   h3, h4, p {
     font-size: 1.2rem;
   }
-
+s
   .btn, .alt-bg .btn, .rsrv .btn {
     font-size: 1.5rem;
   }
