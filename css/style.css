@@ -602,7 +602,7 @@ img.zoom {
 
 #whappBtn:hover {
   background-color: #f5a201;
-  transform: translateY(-5px);
+  transform: translateY(-.5rem);
 }
 
 .whapp{
