@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta property="og:title" content="LOS GRANDES | Reserva Enviada en Los Grandes Restaurant">
+	<meta property="og:description" content="Gracias por reservar tu evento con nosotros. Nuestro equipo se comunicará contigo pronto.">
+	<meta property="og:image" content="https://losgrandesrestaurants.com/img/logos/meta.jpeg">
+	<meta property="og:url" content="https://losgrandesrestaurants.com/reserva-enviada">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>LOS GRANDES | MEXICAN RESTAURANT &amp; BAR</title>
+	<meta name="description" content="¡Gracias por reservar tu evento en Los Grandes! Hemos recibido tu solicitud y pronto nos pondremos en contacto contigo para los detalles.">
+	<meta name="keywords" content="reserva enviada, confirmación reserva evento, Los Grandes Restaurant">
+	<meta name="robots" content="noindex, nofollow">
+
+	<link rel="icon" href="img/logos/favicon.png">
+	<link rel="stylesheet" href="fontawesome/css/fontawesome.min.css">
+	<link rel="stylesheet" href="fontawesome/css/brands.min.css">
+	<link rel="stylesheet" href="fontawesome/css/solid.min.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+	<!-- ============ NAV ============ -->
+	<nav class="nav2 scrolled" id="nav2">
+		<a class="nav2-logo" href="index" aria-label="Navigate to the homepage">
+			<img src="img/logos/grandes-logo.png" alt="Los Grandes">
+		</a>
+
+		<ul class="nav2-links" id="nav2Links">
+			<li><a href="index#menu">Nuestro Menu</a></li>
+			<li><a href="index#visit">Visitanos</a></li>
+			<li><a href="index#gallery">Grandes Momentos</a></li>
+			<li><a href="index#join">Nuestro Equipo</a></li>
+			<li><a href="reserva" aria-current="page">Reservar Privado</a></li>
+			<li><a href="catering">Servicio de Catering</a></li>
+		</ul>
+
+		<button class="nav2-toggle" id="nav2Toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav2Links">
+			<span class="burger2"></span>
+		</button>
+	</nav>
+
+	<!-- ============ THANK YOU ============ -->
+	<section class="thanks2">
+		<span class="eyebrow">Comedor Privado</span>
+		<h1>Comedor Privado y Espacio para Eventos en Los Grandes</h1>
+		<p>Gracias por tu interés en nuestro espacio para eventos privados. Nuestro coordinador de eventos se pondrá en contacto contigo pronto para ayudarte con cualquier otra consulta.</p>
+		<a class="btn2 btn2-solid" href="index">Volver a Inicio</a>
+	</section>
+
+	<!-- ============ FOOTER ============ -->
+	<footer class="footer2" id="footer">
+		<div class="container2">
+			<div class="footer2-top">
+				<img class="footer2-logo" src="img/logos/grandes-logo.png" alt="Los Grandes" loading="lazy" decoding="async">
+
+				<h3 class="eyebrow">Contactanos</h3>
+				<div class="footer2-social">
+					<a href="https://www.facebook.com/profile.php?id=100057538985577&locale=es_LA" target="_blank" rel="noopener" aria-label="Los Grandes en Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+					<a href="https://www.instagram.com/losgrandesmn" target="_blank" rel="noopener" aria-label="Los Grandes en Instagram"><i class="fa-brands fa-instagram"></i></a>
+					<a href="https://www.tiktok.com/@losgrandes.mn" target="_blank" rel="noopener" aria-label="Los Grandes en Tik Tok"><i class="fa-brands fa-tiktok"></i></a>
+				</div>
+
+				<p>info<span style="color:var(--gold)">@</span>losgrandesrestaurants.com<br>(952) 303-5357</p>
+			</div>
+
+			<div class="footer2-meta">
+				<a href="https://altogroupmn.com" target="_blank" rel="noopener"><img src="img/logos/alto.png" alt="Alto Group" loading="lazy" decoding="async"></a>
+				<span>COPYRIGHT © 2026 LOS GRANDES MEXICAN RESTAURANT &amp; BAR — ALL RIGHTS RESERVED — DESIGNED BY JRHM WEB STUDIO</span>
+			</div>
+		</div>
+	</footer>
+
+	<a class="fab2" href="https://wa.me/16122724891" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+		<img src="img/logos/whatsapp.png" alt="" aria-hidden="true">
+	</a>
+
+	<script>
+		const nav2 = document.getElementById('nav2');
+		window.addEventListener('scroll', function () {
+			nav2.classList.toggle('scrolled', window.scrollY > 40);
+		}, { passive: true });
+		nav2.classList.toggle('scrolled', window.scrollY > 40);
+
+		const nav2Toggle = document.getElementById('nav2Toggle');
+		const nav2Links = document.getElementById('nav2Links');
+		nav2Toggle.addEventListener('click', function () {
+			const isOpen = nav2Links.classList.toggle('open');
+			nav2Toggle.classList.toggle('is-active', isOpen);
+			nav2Toggle.setAttribute('aria-expanded', isOpen);
+		});
+		nav2Links.querySelectorAll('a').forEach(function (link) {
+			link.addEventListener('click', function () {
+				nav2Links.classList.remove('open');
+				nav2Toggle.classList.remove('is-active');
+				nav2Toggle.setAttribute('aria-expanded', false);
+			});
+		});
+	</script>
+</body>
+</html>
