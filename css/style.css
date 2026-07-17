@@ -12,6 +12,12 @@
 	font-display: swap;
 }
 
+@font-face {
+	font-family: Helvena;
+	src: url(../fonts/Helvena-Bold.ttf);
+	font-display: swap;
+}
+
 :root {
 	--navy-deep: #0D2438;
 	--bg: #0A2740;
@@ -30,7 +36,7 @@
 	--gold-dim: rgba(242, 179, 60, 0.3);
 
 	--font-display: 'Bronco', serif;
-	--font-body: 'Poppins', sans-serif;
+	--font-body: 'Helvena', sans-serif;
 	--font-loop: 'Bronco', serif;
 	--font-plain: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 
