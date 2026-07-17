@@ -647,6 +647,8 @@ p { font-size: 1.05rem; line-height: 1.7; color: var(--stone-light); }
 	font-size: .7rem;
 	color: rgba(248,241,228,.65);
 	font-family: var(--font-plain);
+	letter-spacing: normal;
+	text-transform: none;
 }
 
 .footer2-meta a { text-decoration: none; color: var(--gold); text-transform: uppercase; }
@@ -850,7 +852,7 @@ p { font-size: 1.05rem; line-height: 1.7; color: var(--stone-light); }
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	box-shadow: 0 4px 20px rgba(13,36,56,.4);
+	box-shadow: 0 1px 4px rgba(13,36,56,.35);
 	transition: transform .3s var(--ease), background .3s var(--ease);
 }
 
