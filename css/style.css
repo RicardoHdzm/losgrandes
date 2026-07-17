@@ -118,6 +118,7 @@ p { font-size: 1.05rem; line-height: 1.7; color: var(--stone-light); }
 	font-weight: 700;
 	transition: background .35s var(--ease), color .35s var(--ease), transform .35s var(--ease);
 	cursor: pointer;
+	font-family: Helvena;
 }
 
 .btn2:hover { background: var(--gold); color: var(--navy-deep); transform: translateY(-2px); }
