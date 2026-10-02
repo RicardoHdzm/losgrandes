@@ -22,6 +22,7 @@
 	--aqua: #5AC7D0;
 	--teal: #25B2B7;
 	--cream: #FAF7B5;
+	--red: #ED1F24;
 	--sand-light: #F5F0E6;
 	--sand: #E3D6BB;
 
@@ -38,6 +39,7 @@
 	--accent-ink: var(--blue-deep);
 	--accent-dim: rgba(90,199,208,.35);
 	--line: rgba(250,247,181,.15);
+	--mark: var(--cream);
 
 
 	--font-display: 'Pacifico', cursive;
@@ -55,6 +57,7 @@
 
 	--container: 1240px;
 	--radius: 2px;
+	--radius-photo: 16px;
 	--ease: cubic-bezier(.16,.84,.44,1);
 }
 
@@ -93,6 +96,8 @@ a { color: inherit; }
 	font-weight: 700;
 }
 
+.eyebrow i { color: var(--mark); }
+
 h1, h2, h3 {
 	font-family: var(--font-display);
 	margin: 0;
@@ -109,34 +114,54 @@ p { font-size: 1.05rem; line-height: 1.75; font-weight: 500; color: var(--text);
 
 .lede { font-size: clamp(1.1rem, 1.6vw, 1.35rem); color: var(--text); max-width: 100ch; }
 
+/* A paragraph that continues a lede reads as part of it, not as a footnote. */
+.lede + p { font-size: clamp(1.1rem, 1.6vw, 1.35rem); }
+
 /* ---- Buttons ----------------------------------------------------------- */
 
 .btn2 {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	gap: .6rem;
-	font-size: .85rem;
-	letter-spacing: .18em;
+	gap: .65rem;
+	font-size: .9rem;
+	letter-spacing: .08em;
 	text-transform: uppercase;
 	text-decoration: none;
-	padding: 1rem 1.75rem;
+	padding: 1rem 2rem;
 	border: 2px solid var(--accent);
 	color: var(--accent);
 	background: transparent;
-	border-radius: var(--radius);
-	font-weight: 700;
-	transition: background .35s var(--ease), color .35s var(--ease), transform .35s var(--ease);
+	border-radius: 999px;
+	font-weight: 800;
+	transition: background .35s var(--ease), color .35s var(--ease), border-color .35s var(--ease), transform .35s var(--ease), box-shadow .35s var(--ease);
 	cursor: pointer;
 	font-family: var(--font-body);
 }
 
-.btn2:hover { background: var(--accent); color: var(--accent-ink); transform: translateY(-2px); }
+.btn2 i { font-size: 1em; }
+
+/* Hover glow is tinted per variant via --btn-glow. */
+.btn2 { --btn-glow: var(--accent); }
+
+.btn2:hover {
+	background: var(--accent);
+	color: var(--accent-ink);
+	transform: translateY(-2px);
+	box-shadow: 0 10px 24px -8px var(--btn-glow);
+}
+
+.btn2:active { transform: translateY(0); box-shadow: none; }
+
+.btn2:focus-visible {
+	outline: 3px solid var(--mark);
+	outline-offset: 3px;
+}
 
 .btn2-solid { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
 .btn2-solid:hover { background: var(--accent-soft); border-color: var(--accent-soft); color: var(--accent-ink); }
 
-.btn2-ghost { border-color: rgba(250,247,181,.5); color: var(--fg); }
+.btn2-ghost { border-color: rgba(250,247,181,.5); color: var(--fg); --btn-glow: rgba(250,247,181,.6); }
 .btn2-ghost:hover { border-color: var(--fg); background: var(--fg); color: var(--accent-ink); }
 
 /* ---- Navbar ------------------------------------------------------------ */
@@ -160,13 +185,14 @@ p { font-size: 1.05rem; line-height: 1.75; font-weight: 500; color: var(--text);
 	box-shadow: 0 1px 0 rgba(90,199,208,.2);
 }
 
+.nav2-logo { flex-shrink: 0; }
 .nav2-logo img { height: 3.25rem; width: auto; transition: height .4s var(--ease); }
 .nav2.scrolled .nav2-logo img { height: 2.6rem; }
 
 .nav2-links {
 	list-style: none;
 	display: flex;
-	gap: var(--space-4);
+	gap: clamp(1rem, 2.2vw, 2.25rem);
 	margin: 0;
 	padding: 0;
 }
@@ -175,7 +201,8 @@ p { font-size: 1.05rem; line-height: 1.75; font-weight: 500; color: var(--text);
 	text-decoration: none;
 	color: #FFFFFF;
 	font-size: .8rem;
-	letter-spacing: .18em;
+	letter-spacing: .1em;
+	white-space: nowrap;
 	text-transform: uppercase;
 	position: relative;
 	padding-bottom: .35rem;
@@ -231,7 +258,8 @@ p { font-size: 1.05rem; line-height: 1.75; font-weight: 500; color: var(--text);
 .nav2-toggle.is-active .burger2::before { transform: translateY(.4rem) rotate(45deg); }
 .nav2-toggle.is-active .burger2::after { transform: translateY(-.4rem) rotate(-45deg); }
 
-@media (max-width: 900px) {
+/* The six links need ~1150px; below that, switch to the slide-out menu. */
+@media (max-width: 1180px) {
 	.nav2-links {
 		position: fixed;
 		inset: 0 0 0 auto;
@@ -269,7 +297,7 @@ p { font-size: 1.05rem; line-height: 1.75; font-weight: 500; color: var(--text);
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-	filter: grayscale(35%) brightness(.55);
+	filter: grayscale(10%) brightness(.7);
 }
 
 .hero2::after {
@@ -416,6 +444,28 @@ p { font-size: 1.05rem; line-height: 1.75; font-weight: 500; color: var(--text);
 	--accent-ink: #FFFFFF;
 	--accent-dim: rgba(0,81,152,.3);
 	--line: rgba(0,81,152,.15);
+	--mark: var(--red);
+}
+
+/* Short brush mark under section titles, painted in --mark: the menu's red
+   on light sections, cream on blue ones (red doesn't read on blue). */
+.section2 h2::after {
+	--brush-mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 12' preserveAspectRatio='none'%3E%3Cpath d='M2 5C20 3 42 6 62 4S100 2 118 5L117 8C98 10 78 8 58 9S22 11 3 9Z'/%3E%3Cellipse cx='112' cy='10.5' rx='5' ry='1' opacity='.6'/%3E%3C/svg%3E");
+	content: '';
+	display: block;
+	width: 120px;
+	height: 12px;
+	margin: .9rem auto 0;
+	background: var(--mark);
+	-webkit-mask: var(--brush-mark) center / 100% 100% no-repeat;
+	mask: var(--brush-mark) center / 100% 100% no-repeat;
+}
+
+.menu2-card h2::after { content: none; }
+
+@media (min-width: 901px) {
+	.split2-text h2::after,
+	.visit2-info h2::after { margin-left: 0; }
 }
 
 .section2-header { text-align: center; max-width: 720px; margin: 0 auto var(--space-5); }
@@ -431,14 +481,32 @@ p { font-size: 1.05rem; line-height: 1.75; font-weight: 500; color: var(--text);
 	align-items: center;
 }
 
+/* Feature photo sits on an offset aqua card, like a print laid on a block
+   of color. isolation keeps the card (z-index -1) behind the photo only. */
 .split2-media {
 	position: relative;
 	aspect-ratio: 4 / 5;
-	overflow: hidden;
-	border-radius: var(--radius);
+	isolation: isolate;
+	margin: 0 1rem 1rem 0;
 }
 
-.split2-media img { width: 100%; height: 100%; object-fit: cover; }
+.split2-media img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: var(--radius-photo);
+}
+
+.split2-media::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	transform: translate(1rem, 1rem);
+	background: var(--aqua);
+	border-radius: var(--radius-photo);
+	z-index: -1;
+	pointer-events: none;
+}
 
 .split2-media.is-placeholder {
 	display: flex;
@@ -449,18 +517,11 @@ p { font-size: 1.05rem; line-height: 1.75; font-weight: 500; color: var(--text);
 
 .split2-media.is-placeholder img { width: 45%; height: 45%; object-fit: contain; }
 
-.split2-media::after {
-	content: '';
-	position: absolute;
-	inset: 0;
-	border: 1px solid var(--accent-dim);
-	margin: 14px;
-	pointer-events: none;
-}
 
 .split2-text .eyebrow { display: block; margin-bottom: var(--space-2); }
 .split2-text h2 { text-align: left; margin-bottom: var(--space-3); }
 .split2-text .lede { margin-bottom: var(--space-4); }
+.split2-text .lede:has(+ p) { margin-bottom: var(--space-2); }
 .split2-actions { display: flex; gap: var(--space-2); flex-wrap: wrap; }
 
 @media (max-width: 900px) {
@@ -489,7 +550,7 @@ p { font-size: 1.05rem; line-height: 1.75; font-weight: 500; color: var(--text);
 	scroll-snap-align: center;
 	background: var(--blue-deep);
 	border: 1px solid var(--accent-dim);
-	border-radius: var(--radius);
+	border-radius: var(--radius-photo);
 	overflow: hidden;
 	transition: border-color .3s var(--ease), transform .3s var(--ease);
 }
@@ -532,7 +593,8 @@ p { font-size: 1.05rem; line-height: 1.75; font-weight: 500; color: var(--text);
 .gallery2-grid {
 	display: grid;
 	grid-template-columns: repeat(6, 1fr);
-	gap: .5rem;
+	grid-auto-flow: dense;
+	gap: .75rem;
 	padding: 0 var(--space-4);
 }
 
@@ -541,7 +603,7 @@ p { font-size: 1.05rem; line-height: 1.75; font-weight: 500; color: var(--text);
 	aspect-ratio: 1 / 1;
 	overflow: hidden;
 	cursor: pointer;
-	border-radius: var(--radius);
+	border-radius: var(--radius-photo);
 }
 
 .g2-item img {
@@ -568,8 +630,16 @@ p { font-size: 1.05rem; line-height: 1.75; font-weight: 500; color: var(--text);
 
 .g2-item.g2-hidden { display: none; }
 
+/* Mosaic: every 6th photo is a 2x2 feature tile, alternating left/right.
+   The pattern repeats every 12 photos and tiles 6 (or 3) columns with no
+   gaps, so the grid still ends on a full row. */
+.g2-item:nth-child(6n+1) { grid-row: span 2; }
+.g2-item:nth-child(12n+1) { grid-column: 1 / span 2; }
+.g2-item:nth-child(12n+7) { grid-column: 5 / span 2; }
+
 @media (max-width: 900px) {
 	.gallery2-grid { grid-template-columns: repeat(3, 1fr); }
+	.g2-item:nth-child(12n+7) { grid-column: 2 / span 2; }
 }
 
 .gallery2-cta { text-align: center; margin-top: var(--space-2); }
@@ -611,7 +681,7 @@ p { font-size: 1.05rem; line-height: 1.75; font-weight: 500; color: var(--text);
 
 .visit2-map {
 	position: relative;
-	border-radius: var(--radius);
+	border-radius: var(--radius-photo);
 	overflow: hidden;
 	border: 1px solid var(--accent-dim);
 	min-height: 360px;
@@ -729,7 +799,7 @@ p { font-size: 1.05rem; line-height: 1.75; font-weight: 500; color: var(--text);
 	--accent: var(--aqua);
 	position: relative;
 	aspect-ratio: 4 / 3;
-	border-radius: var(--radius);
+	border-radius: var(--radius-photo);
 	overflow: hidden;
 	border: 1px solid var(--accent-dim);
 	box-shadow: 0 0 0 rgba(0,0,0,0);
@@ -862,6 +932,9 @@ p { font-size: 1.05rem; line-height: 1.75; font-weight: 500; color: var(--text);
 	text-align: center;
 }
 
+.form2-phone a { text-decoration: none; }
+.form2-phone a:hover { text-decoration: underline; }
+
 @media (max-width: 700px) { .form2-row { grid-template-columns: 1fr; } }
 
 /* ---- Thank-you page -------------------------------------------------------- */
@@ -930,7 +1003,7 @@ p { font-size: 1.05rem; line-height: 1.75; font-weight: 500; color: var(--text);
 	max-width: 85%;
 	max-height: 70vh;
 	box-shadow: 0 0 40px rgba(0,0,0,.5);
-	border-radius: var(--radius);
+	border-radius: var(--radius-photo);
 }
 
 .close-preview {
