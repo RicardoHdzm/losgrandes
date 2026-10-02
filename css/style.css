@@ -1,8 +1,8 @@
 /* ==========================================================================
    LOS GRANDES — Redesign (index2)
    Fresh blue theme from the designer's palette: blue backgrounds, aqua /
-   turquoise as the emphasis accent, cream and sand for text, red as a
-   small highlight. Shares the same component system as MITO's
+   turquoise as the emphasis accent, cream and sand for text, light sand
+   for alternating sections. Shares the same component system as MITO's
    style2.css. Self-contained.
    ========================================================================== */
 
@@ -22,11 +22,11 @@
 	--aqua: #5AC7D0;
 	--teal: #25B2B7;
 	--cream: #FAF7B5;
-	--red: #ED1F24;
+	--sand-light: #F5F0E6;
 	--sand: #E3D6BB;
 
 	--bg: var(--blue);
-	--surface: #00467F;
+
 	--field-bg: #FFFFFF;
 	--ink: var(--blue-deep);
 
@@ -39,7 +39,6 @@
 	--accent-dim: rgba(90,199,208,.35);
 	--line: rgba(250,247,181,.15);
 
-	--brush: 6px solid var(--aqua);
 
 	--font-display: 'Pacifico', cursive;
 	--font-body: 'Nunito', sans-serif;
@@ -68,8 +67,6 @@ body {
 	background-color: var(--bg);
 	color: var(--fg);
 	font-family: var(--font-body);
-	text-transform: uppercase;
-	letter-spacing: .07rem;
 	overflow-x: hidden;
 }
 
@@ -101,8 +98,6 @@ h1, h2, h3 {
 	margin: 0;
 	font-weight: 400;
 	color: var(--heading);
-	text-transform: none;
-	letter-spacing: normal;
 	line-height: 1.25;
 }
 
@@ -110,7 +105,7 @@ h1 { font-size: clamp(2.5rem, 5.5vw, 5rem); }
 h2 { font-size: clamp(2rem, 4vw, 3.25rem); }
 h3 { font-size: clamp(1.5rem, 2.4vw, 2rem); }
 
-p { font-size: 1.05rem; line-height: 1.7; color: var(--text); }
+p { font-size: 1.05rem; line-height: 1.75; font-weight: 500; color: var(--text); }
 
 .lede { font-size: clamp(1.1rem, 1.6vw, 1.35rem); color: var(--text); max-width: 100ch; }
 
@@ -193,7 +188,7 @@ p { font-size: 1.05rem; line-height: 1.7; color: var(--text); }
 	left: 0; bottom: 0;
 	width: 0;
 	height: 1px;
-	background: var(--red);
+	background: var(--aqua);
 	transition: width .3s var(--ease);
 }
 
@@ -266,7 +261,6 @@ p { font-size: 1.05rem; line-height: 1.7; color: var(--text); }
 	align-items: flex-end;
 	overflow: hidden;
 	background: var(--blue-deep);
-	border-bottom: var(--brush);
 }
 
 .hero2 video, .hero2 .hero2-media {
@@ -363,7 +357,6 @@ p { font-size: 1.05rem; line-height: 1.7; color: var(--text); }
 	font-family: var(--font-loop);
 	font-size: clamp(1.6rem, 4vw, 2.75rem);
 	color: var(--accent);
-	text-transform: none;
 }
 
 .marquee-track span { padding: 0 1.5rem; }
@@ -379,38 +372,55 @@ p { font-size: 1.05rem; line-height: 1.7; color: var(--text); }
 
 /* ---- Section shell ------------------------------------------------------ */
 
+/* Blue sections: soft aqua glow from the top over a gentle blue gradient,
+   so they read like water instead of a flat block. */
 .section2 {
 	position: relative;
 	padding: var(--space-6) 0;
 	background-color: var(--bg);
+	background-image:
+		radial-gradient(ellipse 70% 50% at 50% 0%, rgba(90,199,208,.18), transparent 70%),
+		radial-gradient(ellipse 60% 40% at 100% 100%, rgba(0,58,110,.45), transparent 70%),
+		linear-gradient(180deg, var(--blue) 0%, #00488A 100%);
 }
 
-.section2-alt { background-color: var(--surface); }
+/* Aqua brush stroke straddling the top edge of every section and the
+   footer, like the stroke across the top of the printed menu. */
+.section2::after,
+.footer2::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	height: 34px;
+	transform: translateY(-50%);
+	background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 40' preserveAspectRatio='none'%3E%3Cpath fill='%235AC7D0' d='M0 14C80 9 160 16 260 11S440 6 560 12 760 17 880 10 1080 5 1200 11 1380 15 1440 9V27C1360 31 1280 24 1180 29S980 33 860 27 660 22 540 28 320 34 200 27 60 24 0 30Z'/%3E%3Cpath fill='%2325B2B7' opacity='.55' d='M30 18C300 15 600 21 900 17S1300 15 1440 19V22C1200 24 900 20 600 24S200 21 30 22Z'/%3E%3Cg fill='%235AC7D0' opacity='.7'%3E%3Cellipse cx='310' cy='33' rx='26' ry='2'/%3E%3Cellipse cx='1010' cy='6' rx='34' ry='2'/%3E%3Cellipse cx='720' cy='34' rx='14' ry='1.5'/%3E%3C/g%3E%3C/svg%3E") center / 100% 100% no-repeat;
+	z-index: 3;
+	pointer-events: none;
+}
+
+/* Light sand sections: blue text and titles. */
+.section2-alt {
+	background-color: var(--sand-light);
+	/* Paper grain + a warm vignette at the edges, like the menu's paper. */
+	background-image:
+		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .36 0 0 0 0 .22 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+		radial-gradient(ellipse at center, transparent 55%, rgba(227,214,187,.55) 100%);
+	background-size: 220px 220px, 100% 100%;
+	--heading: var(--blue);
+	--fg: var(--blue);
+	--text: rgba(0,58,110,.85);
+	--accent: var(--blue);
+	--accent-soft: var(--blue-deep);
+	--accent-ink: #FFFFFF;
+	--accent-dim: rgba(0,81,152,.3);
+	--line: rgba(0,81,152,.15);
+}
 
 .section2-header { text-align: center; max-width: 720px; margin: 0 auto var(--space-5); }
 .section2-header .eyebrow { display: block; margin-bottom: var(--space-1); }
 .section2-header p { margin: var(--space-2) auto 0; }
-
-.section2-wordmark { overflow: hidden; }
-
-.section2-wordmark::before {
-	content: 'Los Grandes';
-	text-transform: none;
-	letter-spacing: normal;
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	font-family: var(--font-display);
-	font-size: clamp(5rem, 17vw, 15rem);
-	line-height: 1;
-	color: rgba(250,247,181,.05);
-	white-space: nowrap;
-	z-index: 0;
-	pointer-events: none;
-}
-
-.section2-wordmark > .container2 { position: relative; z-index: 1; }
 
 /* ---- About / split layout ------------------------------------------------ */
 
@@ -590,6 +600,8 @@ p { font-size: 1.05rem; line-height: 1.7; color: var(--text); }
 	border-bottom: 1px solid var(--line);
 	font-size: 1rem;
 	color: var(--fg);
+	text-transform: uppercase;
+	letter-spacing: .07rem;
 }
 
 .hours2-list li span:first-child { color: var(--text); }
@@ -617,9 +629,11 @@ p { font-size: 1.05rem; line-height: 1.7; color: var(--text); }
 /* ---- Footer --------------------------------------------------------------- */
 
 .footer2 {
-	background: var(--blue-deep);
+	position: relative;
+	background:
+		radial-gradient(ellipse 80% 60% at 50% 0%, rgba(90,199,208,.12), transparent 70%),
+		var(--blue-deep);
 	padding: var(--space-6) 0 var(--space-3);
-	border-top: var(--brush);
 }
 
 .footer2-top {
@@ -675,8 +689,6 @@ p { font-size: 1.05rem; line-height: 1.7; color: var(--text); }
 	font-size: .7rem;
 	color: rgba(250,247,181,.65);
 	font-family: var(--font-plain);
-	letter-spacing: normal;
-	text-transform: none;
 }
 
 .footer2-meta a { text-decoration: none; color: var(--accent); text-transform: uppercase; }
@@ -691,7 +703,6 @@ p { font-size: 1.05rem; line-height: 1.7; color: var(--text); }
 	padding: 11rem var(--space-4) var(--space-5);
 	text-align: center;
 	background-color: var(--blue-deep);
-	border-bottom: var(--brush);
 	background-image: radial-gradient(circle at 50% 0%, rgba(90,199,208,.1), transparent 60%);
 	background-size: cover;
 	background-position: center;
@@ -713,6 +724,9 @@ p { font-size: 1.05rem; line-height: 1.7; color: var(--text); }
 }
 
 .menu2-card {
+	/* Photo cards keep the blue look even inside sand sections. */
+	--heading: #FFFFFF;
+	--accent: var(--aqua);
 	position: relative;
 	aspect-ratio: 4 / 3;
 	border-radius: var(--radius);
