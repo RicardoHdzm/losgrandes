@@ -943,7 +943,7 @@ p { font-size: 1.05rem; line-height: 1.75; font-weight: 500; color: var(--text);
 
 .form2-row {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
 	gap: var(--space-3);
 	margin-bottom: var(--space-3);
 }
@@ -973,6 +973,22 @@ p { font-size: 1.05rem; line-height: 1.75; font-weight: 500; color: var(--text);
 	color-scheme: light;
 	transition: border-color .3s var(--ease), background .3s var(--ease), box-shadow .3s var(--ease);
 }
+
+/* iOS Safari gives date/time inputs an intrinsic min-width and its own
+   chrome, so they overflow narrow cards. Reset them to behave like the
+   other fields, at the same fixed height (they collapse when empty otherwise). */
+.form2-group input[type="date"],
+.form2-group input[type="time"] {
+	-webkit-appearance: none;
+	appearance: none;
+	display: block;
+	min-width: 0;
+	height: 3.25rem;
+}
+
+.form2-group input::-webkit-date-and-time-value { text-align: left; }
+
+.form2-field { min-width: 0; }
 
 .form2-group input:focus,
 .form2-group select:focus {
@@ -1135,7 +1151,7 @@ p { font-size: 1.05rem; line-height: 1.75; font-weight: 500; color: var(--text);
 .form2-phone a { text-decoration: none; }
 .form2-phone a:hover { text-decoration: underline; }
 
-@media (max-width: 700px) { .form2-row { grid-template-columns: 1fr; } }
+@media (max-width: 700px) { .form2-row { grid-template-columns: minmax(0, 1fr); } }
 
 /* ---- Thank-you page -------------------------------------------------------- */
 
