@@ -176,43 +176,60 @@
 	</section>
 
 	<!-- ============ NUESTRO EQUIPO ============ -->
-	<section class="section2 section2-alt" id="join" style="padding-bottom:0;">
-		<div class="container2 section2-header reveal2">
-			<span class="eyebrow"><i class="fa-solid fa-utensils" aria-hidden="true"></i> Nuestro Equipo</span>
-			<h2>Sé Parte de la Gran Familia</h2>
-			<p class="lede" style="margin-left:auto;margin-right:auto;">Buscamos personas apasionadas para formar parte de nuestra familia en Los Grandes. Si eres amable, dinámico y te encanta brindar experiencias únicas, ¡te estamos esperando!</p>
-		</div>
+	<section class="section2 section2-alt" id="join">
+		<div class="container2 join2">
+			<div class="join2-text reveal2">
+				<span class="eyebrow"><i class="fa-solid fa-utensils" aria-hidden="true"></i> Nuestro Equipo</span>
+				<h2>Sé Parte de la Gran Familia</h2>
+				<p class="lede">Buscamos personas apasionadas para formar parte de nuestra familia en Los Grandes. Si eres amable, dinámico y te encanta brindar experiencias únicas, ¡te estamos esperando!</p>
+			</div>
 
-		<form class="form2 reveal2" action="https://formspree.io/f/mleqonaq" method="POST">
-			<div class="form2-row">
-				<div class="form2-group">
-					<label for="Name">Nombre</label>
-					<input type="text" name="Name" id="Name" placeholder="Nombre" required>
+			<form class="form2 form2-card reveal2" action="https://formspree.io/f/mleqonaq" method="POST">
+				<div class="form2-row">
+					<div class="form2-group">
+						<label for="Name">Nombre</label>
+						<div class="form2-field">
+							<i class="fa-solid fa-user" aria-hidden="true"></i>
+							<input type="text" name="Name" id="Name" placeholder="Nombre" autocomplete="name" required>
+						</div>
+					</div>
+					<div class="form2-group">
+						<label for="Email">Correo Electrónico</label>
+						<div class="form2-field">
+							<i class="fa-solid fa-envelope" aria-hidden="true"></i>
+							<input type="email" name="Email" id="Email" placeholder="Correo Electrónico" autocomplete="email" required>
+						</div>
+					</div>
 				</div>
-				<div class="form2-group">
-					<label for="Email">Correo Electrónico</label>
-					<input type="email" name="Email" id="Email" placeholder="Correo Electrónico" required>
-				</div>
-			</div>
-			<div class="form2-row">
-				<div class="form2-group">
+				<div class="form2-group form2-single">
 					<label for="Phone">Número de Teléfono</label>
-					<input type="text" name="Phone" id="Phone" placeholder="Número de Teléfono" required>
+					<div class="form2-field">
+						<i class="fa-solid fa-phone" aria-hidden="true"></i>
+						<input type="tel" name="Phone" id="Phone" placeholder="Número de Teléfono" autocomplete="tel" required>
+					</div>
 				</div>
-				<div class="form2-group">
-					<label for="puesto">Puesto de Interés</label>
-					<select name="puesto" id="puesto" required>
-						<option value="" disabled selected>Selecciona una opción</option>
-						<option value="admin">Administrativo</option>
-						<option value="cook">Cocinero</option>
-						<option value="waiter">Mesero/a</option>
-					</select>
+				<fieldset class="form2-group form2-choices">
+					<legend>Puesto de Interés</legend>
+					<div class="choice-grid">
+						<label class="choice">
+							<input type="radio" name="puesto" value="admin" required>
+							<span><i class="fa-solid fa-briefcase" aria-hidden="true"></i> Administrativo</span>
+						</label>
+						<label class="choice">
+							<input type="radio" name="puesto" value="cook">
+							<span><i class="fa-solid fa-kitchen-set" aria-hidden="true"></i> Cocinero</span>
+						</label>
+						<label class="choice">
+							<input type="radio" name="puesto" value="waiter">
+							<span><i class="fa-solid fa-bell-concierge" aria-hidden="true"></i> Mesero/a</span>
+						</label>
+					</div>
+				</fieldset>
+				<div class="form2-actions">
+					<button type="submit" class="btn2 btn2-solid"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Enviar</button>
 				</div>
-			</div>
-			<div class="form2-actions">
-				<button type="submit" class="btn2 btn2-solid"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Enviar</button>
-			</div>
-		</form>
+			</form>
+		</div>
 	</section>
 
 	<!-- ============ FOOTER ============ -->

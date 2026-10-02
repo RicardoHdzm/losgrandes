@@ -41,6 +41,13 @@
 	--line: rgba(250,247,181,.15);
 	--mark: var(--cream);
 
+	/* Aqua brush stroke used for the section dividers. */
+	--brush-stroke: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 40' preserveAspectRatio='none'%3E%3Cpath fill='%235AC7D0' d='M0 14C80 9 160 16 260 11S440 6 560 12 760 17 880 10 1080 5 1200 11 1380 15 1440 9V27C1360 31 1280 24 1180 29S980 33 860 27 660 22 540 28 320 34 200 27 60 24 0 30Z'/%3E%3Cpath fill='%2325B2B7' opacity='.55' d='M30 18C300 15 600 21 900 17S1300 15 1440 19V22C1200 24 900 20 600 24S200 21 30 22Z'/%3E%3Cg fill='%235AC7D0' opacity='.7'%3E%3Cellipse cx='310' cy='33' rx='26' ry='2'/%3E%3Cellipse cx='1010' cy='6' rx='34' ry='2'/%3E%3Cellipse cx='720' cy='34' rx='14' ry='1.5'/%3E%3C/g%3E%3C/svg%3E");
+
+	/* Brush-painted mask for the color blocks behind the feature photo and
+	   the join-form card: gently wavy edges and a small trailing dab, in the
+	   same hand as the title underline. */
+	--brush-block: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400' preserveAspectRatio='none'%3E%3Cpath d='M10 14C80 8 160 16 240 10S360 8 392 14C396 80 388 160 394 240S390 360 394 388C320 394 240 386 160 392S50 388 8 392C4 320 12 240 6 160S12 50 10 14Z'/%3E%3Cellipse cx='372' cy='397' rx='18' ry='2' opacity='.6'/%3E%3C/svg%3E");
 
 	--font-display: 'Pacifico', cursive;
 	--font-body: 'Nunito', sans-serif;
@@ -423,7 +430,7 @@ p { font-size: 1.05rem; line-height: 1.75; font-weight: 500; color: var(--text);
 	top: 0;
 	height: 34px;
 	transform: translateY(-50%);
-	background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 40' preserveAspectRatio='none'%3E%3Cpath fill='%235AC7D0' d='M0 14C80 9 160 16 260 11S440 6 560 12 760 17 880 10 1080 5 1200 11 1380 15 1440 9V27C1360 31 1280 24 1180 29S980 33 860 27 660 22 540 28 320 34 200 27 60 24 0 30Z'/%3E%3Cpath fill='%2325B2B7' opacity='.55' d='M30 18C300 15 600 21 900 17S1300 15 1440 19V22C1200 24 900 20 600 24S200 21 30 22Z'/%3E%3Cg fill='%235AC7D0' opacity='.7'%3E%3Cellipse cx='310' cy='33' rx='26' ry='2'/%3E%3Cellipse cx='1010' cy='6' rx='34' ry='2'/%3E%3Cellipse cx='720' cy='34' rx='14' ry='1.5'/%3E%3C/g%3E%3C/svg%3E") center / 100% 100% no-repeat;
+	background: var(--brush-stroke) center / 100% 100% no-repeat;
 	z-index: 3;
 	pointer-events: none;
 }
@@ -481,13 +488,14 @@ p { font-size: 1.05rem; line-height: 1.75; font-weight: 500; color: var(--text);
 	align-items: center;
 }
 
-/* Feature photo sits on an offset aqua card, like a print laid on a block
-   of color. isolation keeps the card (z-index -1) behind the photo only. */
+/* Feature photo sits on an offset, brush-painted aqua block, like a print
+   laid on a swatch of paint. isolation keeps the block (z-index -1) behind
+   the photo only. */
 .split2-media {
 	position: relative;
 	aspect-ratio: 4 / 5;
 	isolation: isolate;
-	margin: 0 1rem 1rem 0;
+	margin: 0 1.1rem 1.1rem 0;
 }
 
 .split2-media img {
@@ -497,13 +505,18 @@ p { font-size: 1.05rem; line-height: 1.75; font-weight: 500; color: var(--text);
 	border-radius: var(--radius-photo);
 }
 
-.split2-media::after {
+/* Shared brush-painted block. It is drawn slightly larger than its box and
+   shifted down-right; the mask softens its edges into gentle brush strokes. */
+.split2-media::after,
+.visit2-map::after,
+.form2-card::before {
 	content: '';
 	position: absolute;
-	inset: 0;
-	transform: translate(1rem, 1rem);
+	inset: -.25rem;
+	transform: translate(.85rem, .85rem);
 	background: var(--aqua);
-	border-radius: var(--radius-photo);
+	-webkit-mask: var(--brush-block) center / 100% 100% no-repeat;
+	mask: var(--brush-block) center / 100% 100% no-repeat;
 	z-index: -1;
 	pointer-events: none;
 }
@@ -525,8 +538,8 @@ p { font-size: 1.05rem; line-height: 1.75; font-weight: 500; color: var(--text);
 .split2-actions { display: flex; gap: var(--space-2); flex-wrap: wrap; }
 
 @media (max-width: 900px) {
-	.split2 { grid-template-columns: 1fr; }
-	.split2-media { order: -1; aspect-ratio: 16/10; }
+	.split2 { grid-template-columns: 1fr; gap: var(--space-3); }
+	.split2-media { order: 1; aspect-ratio: 16/10; }
 	.split2-text, .split2-text h2 { text-align: center; }
 	.split2-actions { justify-content: center; }
 }
@@ -679,15 +692,23 @@ p { font-size: 1.05rem; line-height: 1.75; font-weight: 500; color: var(--text);
 
 .visit2-address { margin-bottom: var(--space-4); }
 
+/* Map sits on the same brush-painted block as the feature photo. The
+   rounding lives on the iframe so the container can let the block show. */
 .visit2-map {
 	position: relative;
-	border-radius: var(--radius-photo);
-	overflow: hidden;
-	border: 1px solid var(--accent-dim);
+	isolation: isolate;
 	min-height: 360px;
+	margin: 0 1.1rem 1.1rem 0;
 }
 
-.visit2-map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.visit2-map iframe {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	border: 0;
+	border-radius: var(--radius-photo);
+}
 
 @media (max-width: 900px) {
 	.visit2-grid { grid-template-columns: 1fr; }
@@ -907,9 +928,9 @@ p { font-size: 1.05rem; line-height: 1.75; font-weight: 500; color: var(--text);
 	color: var(--ink);
 	font-family: var(--font-plain);
 	font-size: 1rem;
-	border-radius: var(--radius);
+	border-radius: 10px;
 	color-scheme: light;
-	transition: border-color .3s var(--ease), background .3s var(--ease);
+	transition: border-color .3s var(--ease), background .3s var(--ease), box-shadow .3s var(--ease);
 }
 
 .form2-group input:focus,
@@ -917,6 +938,131 @@ p { font-size: 1.05rem; line-height: 1.75; font-weight: 500; color: var(--text);
 	outline: none;
 	border-color: var(--aqua);
 	background: var(--field-bg);
+	box-shadow: 0 0 0 4px rgba(90,199,208,.35);
+}
+
+/* Field with a leading icon. */
+.form2-field { position: relative; }
+
+.form2-field i {
+	position: absolute;
+	left: 1rem;
+	top: 50%;
+	transform: translateY(-50%);
+	color: var(--teal);
+	pointer-events: none;
+}
+
+.form2-group .form2-field input { padding-left: 2.75rem; }
+
+.form2-single { margin-bottom: var(--space-3); }
+
+/* Join section: invitation on the left, form card on the right (40/60).
+   The text is vertically centered against the form card. */
+.join2 {
+	display: grid;
+	grid-template-columns: 2fr 3fr;
+	gap: var(--space-5);
+	align-items: center;
+}
+
+.join2-text .eyebrow { display: block; margin-bottom: var(--space-1); }
+.join2-text h2 { margin-bottom: var(--space-2); }
+.join2-text h2::after { margin-left: 0; }
+
+@media (max-width: 1000px) {
+	.join2 { grid-template-columns: 1fr; gap: var(--space-4); }
+	.join2-text { max-width: 720px; margin: 0 auto; text-align: center; }
+	.join2-text h2::after { margin-left: auto; }
+}
+
+/* Join form: white card on the same brush-painted aqua block as the feature
+   photo. The block (::before) and the white card surface (::after) are both
+   z-index -1 layers; ::after comes later, so the white sits on the red. */
+.form2-card {
+	--field-bg: #F8F6F0;
+	position: relative;
+	isolation: isolate;
+	width: calc(100% - 1.1rem);
+	margin: 0;
+	padding: clamp(1.75rem, 4vw, 3rem);
+}
+
+.form2-card::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: #FFFFFF;
+	border-radius: var(--radius-photo);
+	z-index: -1;
+}
+
+.form2-card .form2-actions { margin-top: var(--space-3); }
+
+/* Position picker: tappable cards instead of a dropdown. The radio stays
+   in the DOM (visually hidden) so keyboard, validation and Formspree work. */
+.form2-choices { border: 0; margin: 0; padding: 0; min-width: 0; }
+
+.form2-choices legend {
+	padding: 0;
+	font-size: .75rem;
+	letter-spacing: .12em;
+	text-transform: uppercase;
+	color: var(--accent);
+	margin-bottom: .6rem;
+	font-weight: 700;
+}
+
+.choice-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: .75rem;
+}
+
+.choice { position: relative; cursor: pointer; }
+
+.choice input {
+	position: absolute;
+	inset: 0;
+	opacity: 0;
+	margin: 0;
+	cursor: pointer;
+}
+
+.choice span {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: .55rem;
+	padding: 1.15rem .75rem;
+	background: var(--field-bg);
+	border: 1px solid var(--accent-dim);
+	border-radius: 12px;
+	color: var(--ink);
+	font-size: .82rem;
+	font-weight: 700;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+	text-align: center;
+	transition: background .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease), transform .25s var(--ease);
+}
+
+.choice span i { font-size: 1.5rem; color: var(--teal); transition: color .25s var(--ease); }
+
+.choice:hover span { border-color: var(--blue); transform: translateY(-2px); }
+
+.choice input:checked + span { background: var(--blue); border-color: var(--blue); color: #FFFFFF; }
+.choice input:checked + span i { color: var(--aqua); }
+
+.choice input:focus-visible + span { box-shadow: 0 0 0 4px rgba(90,199,208,.45); }
+
+@media (max-width: 700px) {
+	.join2 { padding: 0 1.25rem; }
+	.form2-card { width: calc(100% - 1rem); }
+	.form2-card::before { transform: translate(.6rem, .6rem); }
+	.choice-grid { grid-template-columns: 1fr; }
+	.choice span { flex-direction: row; justify-content: flex-start; padding: .9rem 1rem; }
+	.choice span i { font-size: 1.15rem; width: 1.5rem; }
 }
 
 .form2-group input::placeholder { color: rgba(0,58,110,.4); }
