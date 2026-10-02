@@ -66,52 +66,73 @@
 
 	<!-- ============ FORM ============ -->
 	<section class="section2">
-		<div class="container2 section2-header reveal2">
-			<span class="eyebrow">Reserva tu Evento</span>
-			<h2>Planea tu Celebración</h2>
-			<p class="lede" style="margin-left:auto;margin-right:auto;">Nuestro equipo trabajará contigo para personalizar la experiencia y adaptarla a tu visión, ya sea una reunión informal o una celebración formal.</p>
+		<div class="container2 join2">
+			<div class="join2-text reveal2">
+				<span class="eyebrow">Reserva tu Evento</span>
+				<h2>Planea tu Celebración</h2>
+				<p class="lede">Nuestro equipo trabajará contigo para personalizar la experiencia y adaptarla a tu visión, ya sea una reunión informal o una celebración formal.</p>
+			</div>
+
+			<form class="form2 form2-card reveal2" action="https://formspree.io/f/mldnqbyz" method="POST">
+				<input type="hidden" name="_next" value="https://losgrandesrestaurants.com/reserva-enviada.html">
+
+				<div class="form2-row">
+					<div class="form2-group">
+						<label for="Name">Nombre</label>
+						<div class="form2-field">
+							<i class="fa-solid fa-user" aria-hidden="true"></i>
+							<input type="text" name="Name" id="Name" placeholder="Nombre" autocomplete="name" required>
+						</div>
+					</div>
+					<div class="form2-group">
+						<label for="inputGuests">Invitados</label>
+						<div class="form2-field">
+							<i class="fa-solid fa-users" aria-hidden="true"></i>
+							<input type="number" name="Guests" id="inputGuests" placeholder="Número de Invitados" min="10" max="250" required>
+						</div>
+					</div>
+				</div>
+
+				<div class="form2-row">
+					<div class="form2-group">
+						<label for="Email">Correo Electrónico</label>
+						<div class="form2-field">
+							<i class="fa-solid fa-envelope" aria-hidden="true"></i>
+							<input type="email" name="Email" id="Email" placeholder="Correo Electrónico" autocomplete="email" required>
+						</div>
+					</div>
+					<div class="form2-group">
+						<label for="Phone">Número de Teléfono</label>
+						<div class="form2-field">
+							<i class="fa-solid fa-phone" aria-hidden="true"></i>
+							<input type="tel" name="Phone" id="Phone" placeholder="Número de Teléfono" autocomplete="tel" required>
+						</div>
+					</div>
+				</div>
+
+				<div class="form2-row">
+					<div class="form2-group">
+						<label for="date">Fecha</label>
+						<div class="form2-field">
+							<i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
+							<input type="date" id="date" name="reserve-date" required>
+						</div>
+					</div>
+					<div class="form2-group">
+						<label for="time">Hora</label>
+						<div class="form2-field">
+							<i class="fa-solid fa-clock" aria-hidden="true"></i>
+							<input type="time" id="time" name="time" min="12:00" max="23:59" required>
+						</div>
+					</div>
+				</div>
+
+				<div class="form2-actions">
+					<button type="submit" class="btn2 btn2-solid"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Reservar</button>
+					<p class="form2-phone"><a href="tel:6122724891">(612) 272-4891</a></p>
+				</div>
+			</form>
 		</div>
-		<form class="form2 reveal2" action="https://formspree.io/f/mldnqbyz" method="POST">
-			<input type="hidden" name="_next" value="https://losgrandesrestaurants.com/reserva-enviada.html">
-
-			<div class="form2-row">
-				<div class="form2-group">
-					<label for="Name">Nombre</label>
-					<input type="text" name="Name" id="Name" placeholder="Nombre" required>
-				</div>
-				<div class="form2-group">
-					<label for="inputGuests">Invitados</label>
-					<input type="number" name="Guests" id="inputGuests" placeholder="Número de Invitados" min="10" max="250" required>
-				</div>
-			</div>
-
-			<div class="form2-row">
-				<div class="form2-group">
-					<label for="Email">Correo Electrónico</label>
-					<input type="email" name="Email" id="Email" placeholder="Correo Electrónico" required>
-				</div>
-				<div class="form2-group">
-					<label for="Phone">Número de Teléfono</label>
-					<input type="tel" name="Phone" id="Phone" placeholder="Número de Teléfono" required>
-				</div>
-			</div>
-
-			<div class="form2-row">
-				<div class="form2-group">
-					<label for="date">Fecha</label>
-					<input type="date" id="date" name="reserve-date" required>
-				</div>
-				<div class="form2-group">
-					<label for="time">Hora</label>
-					<input type="time" id="time" name="time" min="12:00" max="23:59" required>
-				</div>
-			</div>
-
-			<div class="form2-actions">
-				<button type="submit" class="btn2 btn2-solid"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Reservar</button>
-				<p class="form2-phone"><a href="tel:6122724891">(612) 272-4891</a></p>
-			</div>
-		</form>
 	</section>
 
 	<!-- ============ FOOTER ============ -->

@@ -65,67 +65,95 @@
 
 	<!-- ============ FORM ============ -->
 	<section class="section2">
-		<div class="container2 section2-header reveal2">
-			<span class="eyebrow">Haz tu Pedido</span>
-			<h2>Solicita Catering</h2>
-			<p class="lede" style="margin-left:auto;margin-right:auto;">Completa el formulario con los detalles de tu evento y nuestro equipo se pondrá en contacto contigo para confirmar tu pedido.</p>
-		</div>
-		<form class="form2 reveal2" action="https://formspree.io/f/meeyopak" method="POST">
-			<input type="hidden" name="_next" value="https://losgrandesrestaurants.com/catering-enviada.html">
-
-			<div class="form2-row">
-				<div class="form2-group">
-					<label for="Name">Nombre</label>
-					<input type="text" name="Name" id="Name" placeholder="Nombre" required>
-				</div>
-				<div class="form2-group">
-					<label for="inputGuests">Número de Personas</label>
-					<input type="number" name="Guests" id="inputGuests" placeholder="Número de Personas" min="1" required>
-				</div>
+		<div class="container2 join2">
+			<div class="join2-text reveal2">
+				<span class="eyebrow">Haz tu Pedido</span>
+				<h2>Solicita Catering</h2>
+				<p class="lede">Completa el formulario con los detalles de tu evento y nuestro equipo se pondrá en contacto contigo para confirmar tu pedido.</p>
 			</div>
 
-			<div class="form2-row">
-				<div class="form2-group">
-					<label for="Email">Correo Electrónico</label>
-					<input type="email" name="Email" id="Email" placeholder="Correo Electrónico" required>
-				</div>
-				<div class="form2-group">
-					<label for="Phone">Número de Teléfono</label>
-					<input type="tel" name="Phone" id="Phone" placeholder="Número de Teléfono" required>
-				</div>
-			</div>
+			<form class="form2 form2-card reveal2" action="https://formspree.io/f/meeyopak" method="POST">
+				<input type="hidden" name="_next" value="https://losgrandesrestaurants.com/catering-enviada.html">
 
-			<div class="form2-row">
-				<div class="form2-group">
-					<label for="date">Fecha</label>
-					<input type="date" id="date" name="reserve-date" required>
+				<div class="form2-row">
+					<div class="form2-group">
+						<label for="Name">Nombre</label>
+						<div class="form2-field">
+							<i class="fa-solid fa-user" aria-hidden="true"></i>
+							<input type="text" name="Name" id="Name" placeholder="Nombre" autocomplete="name" required>
+						</div>
+					</div>
+					<div class="form2-group">
+						<label for="inputGuests">Número de Personas</label>
+						<div class="form2-field">
+							<i class="fa-solid fa-users" aria-hidden="true"></i>
+							<input type="number" name="Guests" id="inputGuests" placeholder="Número de Personas" min="1" required>
+						</div>
+					</div>
 				</div>
-				<div class="form2-group">
-					<label for="time">Hora</label>
-					<input type="time" id="time" name="time" required>
-				</div>
-			</div>
 
-			<div class="form2-row">
-				<div class="form2-group">
-					<label for="orderType">Pick Up o Delivery</label>
-					<select name="Order Type" id="orderType" required>
-						<option value="" disabled selected>Selecciona una opción</option>
-						<option value="Pick Up">Pick Up</option>
-						<option value="Delivery">Delivery</option>
-					</select>
+				<div class="form2-row">
+					<div class="form2-group">
+						<label for="Email">Correo Electrónico</label>
+						<div class="form2-field">
+							<i class="fa-solid fa-envelope" aria-hidden="true"></i>
+							<input type="email" name="Email" id="Email" placeholder="Correo Electrónico" autocomplete="email" required>
+						</div>
+					</div>
+					<div class="form2-group">
+						<label for="Phone">Número de Teléfono</label>
+						<div class="form2-field">
+							<i class="fa-solid fa-phone" aria-hidden="true"></i>
+							<input type="tel" name="Phone" id="Phone" placeholder="Número de Teléfono" autocomplete="tel" required>
+						</div>
+					</div>
 				</div>
-				<div class="form2-group" id="deliveryAddressGroup" style="display:none;">
+
+				<div class="form2-row">
+					<div class="form2-group">
+						<label for="date">Fecha</label>
+						<div class="form2-field">
+							<i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
+							<input type="date" id="date" name="reserve-date" required>
+						</div>
+					</div>
+					<div class="form2-group">
+						<label for="time">Hora</label>
+						<div class="form2-field">
+							<i class="fa-solid fa-clock" aria-hidden="true"></i>
+							<input type="time" id="time" name="time" required>
+						</div>
+					</div>
+				</div>
+
+				<fieldset class="form2-group form2-choices form2-single">
+					<legend>Pick Up o Delivery</legend>
+					<div class="choice-grid choice-grid-2">
+						<label class="choice">
+							<input type="radio" name="Order Type" value="Pick Up" required>
+							<span><i class="fa-solid fa-bag-shopping" aria-hidden="true"></i> Pick Up</span>
+						</label>
+						<label class="choice">
+							<input type="radio" name="Order Type" value="Delivery">
+							<span><i class="fa-solid fa-truck" aria-hidden="true"></i> Delivery</span>
+						</label>
+					</div>
+				</fieldset>
+
+				<div class="form2-group form2-single" id="deliveryAddressGroup" hidden>
 					<label for="deliveryAddress">Dirección de Entrega / Ciudad</label>
-					<input type="text" name="Delivery Address" id="deliveryAddress" placeholder="Dirección de Entrega / Ciudad">
+					<div class="form2-field">
+						<i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+						<input type="text" name="Delivery Address" id="deliveryAddress" placeholder="Dirección de Entrega / Ciudad" autocomplete="street-address">
+					</div>
 				</div>
-			</div>
 
-			<div class="form2-actions">
-				<button type="submit" class="btn2 btn2-solid"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Enviar Solicitud</button>
-				<p class="form2-phone"><a href="tel:9523035357">(952) 303-5357</a></p>
-			</div>
-		</form>
+				<div class="form2-actions">
+					<button type="submit" class="btn2 btn2-solid"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Enviar Solicitud</button>
+					<p class="form2-phone"><a href="tel:9523035357">(952) 303-5357</a></p>
+				</div>
+			</form>
+		</div>
 	</section>
 
 	<!-- ============ FOOTER ============ -->
@@ -187,18 +215,15 @@
 		document.getElementById('date').setAttribute('min', todayDate);
 
 		// Show the delivery address field only when "Delivery" is selected
-		const orderType = document.getElementById('orderType');
 		const deliveryAddressGroup = document.getElementById('deliveryAddressGroup');
 		const deliveryAddressInput = document.getElementById('deliveryAddress');
-		orderType.addEventListener('change', function () {
-			if (this.value === 'Delivery') {
-				deliveryAddressGroup.style.display = 'block';
-				deliveryAddressInput.setAttribute('required', 'required');
-			} else {
-				deliveryAddressGroup.style.display = 'none';
-				deliveryAddressInput.removeAttribute('required');
-				deliveryAddressInput.value = '';
-			}
+		document.querySelectorAll('input[name="Order Type"]').forEach(function (option) {
+			option.addEventListener('change', function () {
+				const isDelivery = this.value === 'Delivery';
+				deliveryAddressGroup.hidden = !isDelivery;
+				deliveryAddressInput.required = isDelivery;
+				if (!isDelivery) deliveryAddressInput.value = '';
+			});
 		});
 
 		// Reveal-on-scroll

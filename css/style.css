@@ -957,7 +957,8 @@ p { font-size: 1.05rem; line-height: 1.75; font-weight: 500; color: var(--text);
 
 .form2-single { margin-bottom: var(--space-3); }
 
-/* Join section: invitation on the left, form card on the right (40/60).
+/* Form sections (join, reserva, catering): invitation on the left, form card
+   on the right (40/60).
    The text is vertically centered against the form card. */
 .join2 {
 	display: grid;
@@ -976,11 +977,20 @@ p { font-size: 1.05rem; line-height: 1.75; font-weight: 500; color: var(--text);
 	.join2-text h2::after { margin-left: auto; }
 }
 
-/* Join form: white card on the same brush-painted aqua block as the feature
-   photo. The block (::before) and the white card surface (::after) are both
-   z-index -1 layers; ::after comes later, so the white sits on the red. */
+/* Form card (join, reserva, catering): white card on the same brush-painted
+   aqua block as the feature photo. The block (::before) and the white card
+   surface (::after) are both z-index -1 layers; ::after comes later, so the
+   white sits on the block. The card always uses the light-section colors,
+   so it reads the same on sand or blue sections. */
 .form2-card {
 	--field-bg: #F8F6F0;
+	--fg: var(--blue);
+	--text: rgba(0,58,110,.85);
+	--accent: var(--blue);
+	--accent-soft: var(--blue-deep);
+	--accent-ink: #FFFFFF;
+	--accent-dim: rgba(0,81,152,.3);
+	--mark: var(--red);
 	position: relative;
 	isolation: isolate;
 	width: calc(100% - 1.1rem);
@@ -1002,6 +1012,7 @@ p { font-size: 1.05rem; line-height: 1.75; font-weight: 500; color: var(--text);
 /* Position picker: tappable cards instead of a dropdown. The radio stays
    in the DOM (visually hidden) so keyboard, validation and Formspree work. */
 .form2-choices { border: 0; margin: 0; padding: 0; min-width: 0; }
+.form2-choices.form2-single { margin-bottom: var(--space-3); }
 
 .form2-choices legend {
 	padding: 0;
@@ -1018,6 +1029,8 @@ p { font-size: 1.05rem; line-height: 1.75; font-weight: 500; color: var(--text);
 	grid-template-columns: repeat(3, 1fr);
 	gap: .75rem;
 }
+
+.choice-grid-2 { grid-template-columns: repeat(2, 1fr); }
 
 .choice { position: relative; cursor: pointer; }
 
