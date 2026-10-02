@@ -720,6 +720,9 @@ p { font-size: 1.05rem; line-height: 1.75; font-weight: 500; color: var(--text);
 /* ---- Footer --------------------------------------------------------------- */
 
 .footer2 {
+	/* Footer text is white instead of cream/sand. */
+	--fg: #FFFFFF;
+	--text: #FFFFFF;
 	position: relative;
 	background:
 		radial-gradient(ellipse 80% 60% at 50% 0%, rgba(90,199,208,.12), transparent 70%),
@@ -736,7 +739,45 @@ p { font-size: 1.05rem; line-height: 1.75; font-weight: 500; color: var(--text);
 	margin-bottom: var(--space-5);
 }
 
-.footer2-top p { color: rgba(250,247,181,.75); }
+.footer2-top p { color: rgba(255,255,255,.85); }
+
+/* Address (links to Google Maps), short hours, and tappable phone/email. */
+.footer2-info {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--space-2);
+	font-size: .95rem;
+}
+
+.footer2-info a {
+	color: var(--fg);
+	text-decoration: none;
+	display: inline-flex;
+	align-items: center;
+	gap: .5rem;
+	transition: color .25s var(--ease);
+}
+
+.footer2-info a:hover { color: var(--accent); }
+.footer2-info i { color: var(--accent); }
+
+.footer2-hours {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	color: var(--text);
+	line-height: 1.8;
+}
+
+.footer2-hours span { color: var(--fg); font-weight: 700; margin-right: .35rem; }
+
+.footer2-contact {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: .5rem var(--space-3);
+}
 
 .footer2-logo { height: 5rem; }
 
@@ -777,12 +818,12 @@ p { font-size: 1.05rem; line-height: 1.75; font-weight: 500; color: var(--text);
 	gap: var(--space-3);
 	padding-top: var(--space-4);
 	border-top: 1px solid rgba(90,199,208,.2);
-	font-size: .7rem;
-	color: rgba(250,247,181,.65);
+	font-size: .8rem;
+	color: rgba(255,255,255,.75);
 	font-family: var(--font-plain);
 }
 
-.footer2-meta a { text-decoration: none; color: var(--accent); text-transform: uppercase; }
+.footer2-meta a { text-decoration: none; color: var(--accent); }
 
 .footer2-meta img { width: 110px; height: auto; opacity: .9; transition: opacity .3s var(--ease); }
 .footer2-meta img:hover { opacity: 1; }
