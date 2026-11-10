@@ -1,0 +1,933 @@
+/* ==========================================================================
+   LOS GRANDES PRIME — website
+   Same section rhythm as the original Los Grandes site (fixed nav, hero,
+   concept split, menu, hours & location, reservations, footer), dressed in
+   the Prime brandbook evening palette: near-black and charcoal sections,
+   light Fraunces serif headlines, Hanken Grotesk text, sand details, rare
+   turquoise accents. More formal than the original: square corners,
+   thin rules, generous spacing, slow motion, film grain.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+	--turquoise: #19A6D1;
+	--coastal: #157CC0;
+	--sunlight: #ED1F24;
+	/* Champagne: a warmer on-screen take on the brandbook sand (#FAF7B5),
+	   which reads lemony on black. */
+	--sand: #E6D3A3;
+	--black: #050505;
+	--charcoal: #151515;
+	--ocean: #071F46;
+
+	--serif: 'Fraunces', serif;
+	--sans: 'Hanken Grotesk', sans-serif;
+
+	--container: 1200px;
+	--gutter: clamp(1.25rem, 5vw, 4rem);
+	--section: clamp(6.5rem, 12vw, 10rem);
+	--ease: cubic-bezier(.16,.84,.44,1);
+	--slow: .7s;
+
+	/* Hairlines and quiet text on black. */
+	--rule: rgba(255,255,255,.12);
+	--hairline-sand: rgba(230,211,163,.35);
+	--muted: rgba(255,255,255,.62);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+
+html.pr-menu-open { overflow: hidden; }
+html.pr-menu-open .pr-fab { opacity: 0; pointer-events: none; }
+
+body {
+	margin: 0;
+	background: var(--black);
+	color: #FFFFFF;
+	font-family: var(--sans);
+	-webkit-font-smoothing: antialiased;
+}
+
+/* Film grain: a barely-there noise layer over the whole page so the blacks
+   feel photographic instead of flat. Sits under the nav and WhatsApp button. */
+body::after {
+	content: '';
+	position: fixed;
+	inset: 0;
+	z-index: 40;
+	pointer-events: none;
+	opacity: .07;
+	background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: inherit; }
+
+::selection { background: var(--sand); color: var(--black); }
+
+/* Thin dark scrollbar in place of the grey system one. */
+html { scrollbar-width: thin; scrollbar-color: #2E2E2E var(--black); }
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--black); }
+::-webkit-scrollbar-thumb { background: #2E2E2E; border: 2px solid var(--black); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #444444; }
+
+.pr-container { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); }
+
+/* ---- Type ------------------------------------------------------------------ */
+
+/* Quiet, widely tracked labels; the section number (brandbook style) is the
+   only part in sand. */
+.pr-eyebrow {
+	display: flex;
+	align-items: center;
+	gap: .9rem;
+	margin-bottom: 1.5rem;
+	font-size: .7rem;
+	font-weight: 600;
+	letter-spacing: .34em;
+	text-transform: uppercase;
+	color: var(--muted);
+}
+
+.pr-num { color: var(--sand); letter-spacing: .12em; }
+
+.pr-section-header .pr-eyebrow,
+.pr-reserve .pr-eyebrow,
+.pr-footer-top .pr-eyebrow { justify-content: center; }
+
+.pr-num::after {
+	content: '';
+	display: inline-block;
+	width: 2.25rem;
+	height: 1px;
+	margin-left: .9rem;
+	vertical-align: middle;
+	background: var(--hairline-sand);
+}
+
+/* Light, large serif headlines: the fine-dining signature. */
+h1, h2, h3 { margin: 0; font-family: var(--serif); font-weight: 400; text-wrap: balance; }
+
+/* One word per title in italic: the upright + italic serif pairing from the
+   brandbook ("Fresh meets Fire"). */
+h1 em, h2 em { font-style: italic; font-weight: 400; }
+/* Turquoise = text accent (as in the hero line); coastal blue stays for actions. */
+h2 em { color: var(--turquoise); }
+
+/* On the Deep Ocean section turquoise sits too close to the blue; use champagne. */
+.pr-section-ocean h2 em { color: var(--sand); }
+
+h2 { font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1.05; letter-spacing: -.01em; }
+
+p { line-height: 1.85; }
+
+/* ---- Buttons: squared, formal ----------------------------------------------- */
+
+.pr-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: .65rem;
+	padding: 1rem 1.9rem;
+	border: 1px solid currentColor;
+	border-radius: 2px;
+	font-family: var(--sans);
+	font-size: .8rem;
+	font-weight: 700;
+	letter-spacing: .16em;
+	text-transform: uppercase;
+	text-decoration: none;
+	white-space: nowrap;
+	transition: background var(--slow) var(--ease), color var(--slow) var(--ease), border-color var(--slow) var(--ease);
+}
+
+.pr-btn i { transition: transform var(--slow) var(--ease); }
+.pr-btn:hover .fa-arrow-right { transform: translateX(4px); }
+.pr-btn:focus-visible { outline: 2px solid var(--turquoise); outline-offset: 4px; }
+
+.pr-btn-solid { background: var(--coastal); border-color: var(--coastal); color: #FFFFFF; }
+.pr-btn-solid:hover { background: #FFFFFF; border-color: #FFFFFF; color: var(--black); }
+
+.pr-btn-light { color: #FFFFFF; border-color: rgba(255,255,255,.7); }
+.pr-btn-light:hover { background: #FFFFFF; color: var(--black); border-color: #FFFFFF; }
+
+/* ---- Navbar ------------------------------------------------------------------ */
+
+.pr-nav {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 50;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1.5rem;
+	padding: 1.4rem var(--gutter);
+	background: linear-gradient(to bottom, rgba(5,5,5,.85), transparent);
+	transition: background .4s var(--ease), padding .4s var(--ease), box-shadow .4s var(--ease);
+}
+
+.pr-nav.scrolled {
+	background: rgba(5,5,5,.94);
+	backdrop-filter: blur(10px);
+	padding-top: .9rem;
+	padding-bottom: .9rem;
+	box-shadow: 0 1px 0 var(--rule);
+}
+
+.pr-nav-logo { flex-shrink: 0; }
+.pr-nav-logo img { height: 4.5rem; width: auto; transition: height .4s var(--ease); }
+.pr-nav.scrolled .pr-nav-logo img { height: 3.4rem; }
+
+.pr-nav-links {
+	display: flex;
+	align-items: center;
+	gap: clamp(1.25rem, 2.4vw, 2.5rem);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.pr-nav-links a:not(.pr-btn) {
+	position: relative;
+	padding-bottom: .3rem;
+	font-size: .78rem;
+	font-weight: 700;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	text-decoration: none;
+	white-space: nowrap;
+	color: #FFFFFF;
+}
+
+.pr-nav-links a:not(.pr-btn)::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 0;
+	height: 1px;
+	background: var(--sand);
+	transition: width var(--slow) var(--ease);
+}
+
+.pr-nav-links a:not(.pr-btn):hover::after { width: 100%; }
+
+.pr-nav-cta { padding: .75rem 1.4rem; }
+
+.pr-nav-toggle {
+	display: none;
+	width: 2.6rem;
+	height: 2.6rem;
+	align-items: center;
+	justify-content: center;
+	background: none;
+	border: 1px solid rgba(255,255,255,.4);
+	border-radius: 2px;
+	cursor: pointer;
+}
+
+.pr-burger, .pr-burger::before, .pr-burger::after {
+	display: block;
+	width: 1.2rem;
+	height: 1px;
+	background: #FFFFFF;
+	transition: transform .3s var(--ease), background .3s var(--ease);
+}
+
+.pr-burger { position: relative; }
+.pr-burger::before, .pr-burger::after { content: ''; position: absolute; left: 0; }
+.pr-burger::before { top: -.4rem; }
+.pr-burger::after { top: .4rem; }
+
+.pr-nav-toggle.is-active .pr-burger { background: transparent; }
+.pr-nav-toggle.is-active .pr-burger::before { transform: translateY(.4rem) rotate(45deg); }
+.pr-nav-toggle.is-active .pr-burger::after { transform: translateY(-.4rem) rotate(-45deg); }
+
+@media (max-width: 960px) {
+	.pr-nav-toggle { display: flex; position: relative; z-index: 2; }
+	/* Full-screen menu: large serif links, fading in over near-black. */
+	.pr-nav-links {
+		position: fixed;
+		inset: 0;
+		height: 100vh;
+		height: 100dvh;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 1.6rem;
+		padding: 6rem 2rem 3rem;
+		background: var(--black);
+		opacity: 0;
+		visibility: hidden;
+		transition: opacity var(--slow) var(--ease), visibility var(--slow) var(--ease);
+	}
+	.pr-nav-links.open { opacity: 1; visibility: visible; }
+
+	.pr-nav-links a:not(.pr-btn) {
+		font-family: var(--serif);
+		font-size: clamp(1.9rem, 8vw, 2.6rem);
+		font-weight: 400;
+		letter-spacing: 0;
+		text-transform: none;
+	}
+
+	.pr-nav-links li { opacity: 0; transform: translateY(12px); transition: opacity var(--slow) var(--ease), transform var(--slow) var(--ease); }
+	.pr-nav-links.open li { opacity: 1; transform: none; }
+	.pr-nav-links.open li:nth-child(2) { transition-delay: .06s; }
+	.pr-nav-links.open li:nth-child(3) { transition-delay: .12s; }
+	.pr-nav-links.open li:nth-child(4) { transition-delay: .18s; }
+	.pr-nav-links.open li:nth-child(5) { transition-delay: .24s; }
+	.pr-nav-links.open li:nth-child(6) { transition-delay: .3s; }
+
+	.pr-nav-cta { margin-top: 1rem; padding: 1rem 2.4rem; }
+
+	.pr-nav-logo { position: relative; z-index: 2; }
+}
+
+/* ---- Hero ------------------------------------------------------------------- */
+
+.pr-hero {
+	position: relative;
+	isolation: isolate;
+	min-height: 100svh;
+	display: flex;
+	align-items: center;
+	padding: 8rem 0 5rem;
+	background: var(--black) url("../img/video/prime-poster.jpg") center / cover no-repeat;
+	overflow: hidden;
+}
+
+/* Background video (shrimp over the flame: "entre olas y brasas"). The
+   poster image shows while it loads and when motion is reduced. */
+.pr-hero-video {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	animation: pr-slow-zoom 24s ease-in-out infinite alternate;
+}
+
+/* A very slow push-in on the video: barely noticeable, adds depth. */
+@keyframes pr-slow-zoom {
+	from { transform: scale(1); }
+	to { transform: scale(1.08); }
+}
+
+/* Darkening layer between the video and the text. */
+.pr-hero::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	background:
+		linear-gradient(to top, var(--black) 0, rgba(5,5,5,0) 180px),
+		linear-gradient(90deg, rgba(5,5,5,.94) 0%, rgba(5,5,5,.75) 45%, rgba(5,5,5,.35) 100%);
+}
+
+/* ---- Section dividers -----------------------------------------------------------------
+   A hairline across the content width, broken at the center by the sailfish
+   emblem in sand: the classic fine-dining separator, and a quiet brand nod.
+   ::before draws the line (with a gap left in the middle), ::after the emblem. */
+.pr-section::before,
+.pr-footer::before,
+.pr-section::after,
+.pr-footer::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	z-index: 3;
+	pointer-events: none;
+}
+
+.pr-section::before,
+.pr-footer::before {
+	left: max(var(--gutter), calc((100% - var(--container)) / 2 + var(--gutter)));
+	right: max(var(--gutter), calc((100% - var(--container)) / 2 + var(--gutter)));
+	height: 1px;
+	background: linear-gradient(to right,
+		transparent 0,
+		var(--hairline-sand) 12%,
+		var(--hairline-sand) calc(50% - 44px),
+		transparent calc(50% - 44px),
+		transparent calc(50% + 44px),
+		var(--hairline-sand) calc(50% + 44px),
+		var(--hairline-sand) 88%,
+		transparent 100%);
+}
+
+.pr-section::after,
+.pr-footer::after {
+	left: 50%;
+	width: 56px;
+	height: 38px;
+	transform: translate(-50%, -50%);
+	background: url("../img/logos/prime-emblem.png") center / contain no-repeat;
+	opacity: .85;
+}
+
+.pr-hero-content { position: relative; z-index: 2; width: 100%; }
+
+.pr-hero h1 {
+	font-size: clamp(2.8rem, 7.5vw, 6rem);
+	line-height: 1.02;
+	text-transform: uppercase;
+	max-width: 12ch;
+}
+
+.pr-hero-sub {
+	margin: 1rem 0 0;
+	font-family: var(--serif);
+	font-style: italic;
+	font-weight: 400;
+	font-size: clamp(1.4rem, 3.2vw, 2.4rem);
+	line-height: 1.3;
+	color: var(--turquoise);
+}
+
+.pr-pillars {
+	display: flex;
+	flex-wrap: wrap;
+	gap: .5rem 1.25rem;
+	margin: 2.5rem 0 0;
+	padding: 0;
+	list-style: none;
+	font-size: .74rem;
+	font-weight: 600;
+	letter-spacing: .3em;
+	text-transform: uppercase;
+	color: var(--sand);
+}
+
+.pr-pillars li + li::before { content: '\2022'; margin-right: 1.25rem; color: var(--hairline-sand); }
+
+.pr-hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 3rem; }
+
+/* ---- Section shells ----------------------------------------------------------- */
+
+.pr-section { position: relative; isolation: isolate; padding: var(--section) 0; }
+
+/* Evening palette: near-black sections alternate with charcoal ones. The
+   brand blues step back; sand carries the details, turquoise stays rare. */
+.pr-section-black {
+	background:
+		radial-gradient(ellipse 70% 60% at 15% 0%, rgba(230,211,163,.04), transparent 70%),
+		var(--black);
+}
+
+.pr-section-charcoal {
+	background:
+		radial-gradient(ellipse 60% 70% at 80% 50%, rgba(255,255,255,.025), transparent 70%),
+		var(--charcoal);
+}
+
+/* One brand moment in the evening palette: Deep Ocean from the brandbook,
+   with a faint turquoise glow. Used once (Reservations) so it feels intentional. */
+.pr-section-ocean {
+	background:
+		radial-gradient(ellipse 70% 80% at 50% 0%, rgba(25,166,209,.16), transparent 70%),
+		radial-gradient(ellipse 60% 60% at 50% 100%, rgba(5,5,5,.5), transparent 70%),
+		var(--ocean);
+}
+
+.pr-section-ocean p { color: rgba(255,255,255,.78); }
+
+.pr-section-black p,
+.pr-section-charcoal p { color: rgba(255,255,255,.72); }
+.pr-section .pr-lede { font-size: 1.15rem; color: #FFFFFF; }
+
+/* Hairline sand rule under section titles. */
+.pr-section h2::after {
+	content: '';
+	display: block;
+	width: 48px;
+	height: 1px;
+	margin-top: 1.75rem;
+	background: var(--sand);
+}
+
+.pr-section-header h2::after,
+.pr-reserve h2::after { margin-left: auto; margin-right: auto; }
+
+.pr-section-header { max-width: 680px; margin: 0 auto clamp(3rem, 6vw, 4.5rem); text-align: center; }
+.pr-section-header p { margin: 1.25rem auto 0; color: rgba(255,255,255,.8); }
+
+/* ---- Concept: centered text block ---------------------------------------------------- */
+
+.pr-concept { max-width: 760px; text-align: center; }
+.pr-concept .pr-eyebrow { justify-content: center; }
+.pr-concept h2 { margin-bottom: 1.75rem; }
+.pr-concept h2::after { margin-left: auto; margin-right: auto; }
+.pr-concept p { max-width: 62ch; margin: 0 auto 1.25rem; }
+.pr-concept .pr-btn { margin-top: 1.25rem; }
+
+/* No divider between the hero and the first section: the hero's fade to
+   black already joins them. */
+.pr-section-first::before,
+.pr-section-first::after { content: none; }
+
+/* Gallery-style frame: a hairline sand outline offset behind the element.
+   The section is isolated, so the z-index -1 frame sits above the section
+   background but under the framed element. */
+.pr-framed { position: relative; }
+
+.pr-framed::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	transform: translate(18px, 18px);
+	border: 1px solid var(--hairline-sand);
+	z-index: -1;
+	pointer-events: none;
+}
+
+/* ---- Menu cards: Platillos & Bebidas ------------------------------------------------
+   Two large photo cards. The photo sits in ::before so it can push in very
+   slowly on hover; a dark gradient keeps the type legible. */
+
+.pr-menu-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: clamp(1.25rem, 3vw, 2rem);
+}
+
+.pr-menu-card {
+	position: relative;
+	isolation: isolate;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	aspect-ratio: 4 / 3;
+	padding: clamp(1.75rem, 4vw, 3rem);
+	border: 1px solid var(--rule);
+	text-decoration: none;
+	overflow: hidden;
+	transition: border-color var(--slow) var(--ease);
+}
+
+.pr-menu-card::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: -2;
+	background: var(--card-img) center / cover no-repeat;
+	filter: saturate(.85) brightness(.75);
+	transition: transform 1.6s var(--ease), filter 1.6s var(--ease);
+}
+
+.pr-menu-card::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background: linear-gradient(to top, rgba(5,5,5,.92) 10%, rgba(5,5,5,.35) 55%, rgba(5,5,5,.15) 100%);
+}
+
+.pr-menu-card:hover { border-color: var(--hairline-sand); }
+.pr-menu-card:hover::before { transform: scale(1.06); filter: saturate(1) brightness(.85); }
+
+.pr-menu-platillos { --card-img: url("../img/menu/comida.jpeg"); }
+.pr-menu-bebidas { --card-img: url("../img/menu/bebidas.jpeg"); }
+
+.pr-menu-kicker {
+	margin-bottom: .9rem;
+	font-size: .7rem;
+	font-weight: 600;
+	letter-spacing: .3em;
+	text-transform: uppercase;
+	color: var(--muted);
+}
+
+.pr-menu-card h3 { font-size: clamp(2.4rem, 4.5vw, 3.6rem); line-height: 1; }
+
+.pr-menu-cta {
+	align-self: flex-start;
+	margin-top: 1.5rem;
+	padding-top: .9rem;
+	border-top: 1px solid var(--hairline-sand);
+	font-size: .7rem;
+	font-weight: 600;
+	letter-spacing: .3em;
+	text-transform: uppercase;
+	color: var(--sand);
+}
+
+/* ---- Photo band ----------------------------------------------------------------------
+   Full-width image pause between sections; darkened from the left so the
+   quote reads on the dark side of the photo. */
+
+.pr-band {
+	position: relative;
+	isolation: isolate;
+	display: flex;
+	align-items: center;
+	min-height: clamp(340px, 62vh, 620px);
+	background:
+		linear-gradient(90deg, rgba(5,5,5,.9) 0%, rgba(5,5,5,.55) 45%, rgba(5,5,5,.15) 100%),
+		linear-gradient(to top, rgba(5,5,5,.6), transparent 35%),
+		url("../img/gallery/8.jpg") 70% 35% / cover no-repeat;
+}
+
+.pr-band-content { width: 100%; }
+
+.pr-band-quote {
+	margin: 0;
+	max-width: 16ch;
+	font-family: var(--serif);
+	font-style: italic;
+	font-weight: 400;
+	font-size: clamp(2rem, 4.5vw, 3.6rem);
+	line-height: 1.15;
+	color: #FFFFFF;
+}
+
+/* ---- Hours & location ---------------------------------------------------------------- */
+
+.pr-visit {
+	display: grid;
+	grid-template-columns: 1fr 1.1fr;
+	gap: clamp(2.5rem, 6vw, 6rem);
+	align-items: center;
+}
+
+.pr-visit-info h2 { margin-bottom: 2.25rem; }
+
+.pr-hours { list-style: none; margin: 0 0 2rem; padding: 0; border-top: 1px solid var(--rule); }
+
+.pr-hours li {
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
+	padding: 1rem 0;
+	border-bottom: 1px solid var(--rule);
+	font-size: .78rem;
+	font-weight: 600;
+	letter-spacing: .2em;
+	text-transform: uppercase;
+	color: rgba(255,255,255,.72);
+}
+
+.pr-hours li span:last-child { color: var(--sand); }
+
+.pr-address {
+	display: flex;
+	align-items: flex-start;
+	gap: .65rem;
+	margin: 0 0 2rem;
+	font-family: var(--serif);
+	font-size: 1.35rem;
+	line-height: 1.4;
+	color: #FFFFFF;
+	text-decoration: none;
+	transition: color .25s var(--ease);
+}
+
+.pr-address i { margin-top: .3rem; font-size: 1.1rem; color: var(--sand); }
+.pr-address:hover { color: var(--sand); }
+
+.pr-visit-map {
+	position: relative;
+	min-height: 400px;
+}
+
+.pr-visit-map iframe {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	border: 0;
+}
+
+/* ---- Reservations -------------------------------------------------------------------- */
+
+.pr-reserve { text-align: center; }
+.pr-reserve h2 { max-width: 20ch; margin: 0 auto 1.25rem; }
+.pr-reserve p { max-width: 54ch; margin: 0 auto 2.5rem; color: rgba(255,255,255,.85); }
+.pr-reserve-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
+
+/* ---- Join the team ------------------------------------------------------------------
+   Invitation on the left, form on the right (40/60), like the Los Grandes
+   join section. The form is dark with hairline fields and a sand frame. */
+
+.pr-join {
+	display: grid;
+	grid-template-columns: 2fr 3fr;
+	gap: clamp(2.5rem, 6vw, 6rem);
+	align-items: center;
+}
+
+.pr-join-text h2 { margin-bottom: 1.5rem; }
+.pr-join-text p { margin: 0 0 1.25rem; }
+
+.pr-form {
+	padding: clamp(1.75rem, 4vw, 3rem);
+	background: var(--charcoal);
+	border: 1px solid var(--rule);
+	margin-right: 18px;
+}
+
+.pr-form-row {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 1.5rem;
+}
+
+.pr-field { margin: 0 0 1.5rem; min-width: 0; }
+
+.pr-field label,
+.pr-choices legend {
+	display: block;
+	margin-bottom: .65rem;
+	padding: 0;
+	font-size: .68rem;
+	font-weight: 600;
+	letter-spacing: .26em;
+	text-transform: uppercase;
+	color: var(--muted);
+}
+
+.pr-field input {
+	width: 100%;
+	padding: .95rem 1rem;
+	background: rgba(255,255,255,.03);
+	border: 1px solid var(--rule);
+	border-radius: 2px;
+	color: #FFFFFF;
+	font-family: var(--sans);
+	font-size: 1rem;
+	color-scheme: dark;
+	transition: border-color var(--slow) var(--ease), background var(--slow) var(--ease);
+}
+
+.pr-field input::placeholder { color: rgba(255,255,255,.3); }
+
+.pr-field input:focus {
+	outline: none;
+	border-color: var(--sand);
+	background: rgba(255,255,255,.05);
+}
+
+/* Position picker: tappable cards; the radio stays in the DOM (visually
+   hidden) so keyboard use, validation and Formspree all keep working. */
+.pr-choices { border: 0; padding: 0; margin-bottom: 2rem; }
+
+/* Five positions: three on the first row, two on the second, both full width. */
+.pr-choice-grid {
+	display: grid;
+	grid-template-columns: repeat(6, minmax(0, 1fr));
+	gap: .75rem;
+}
+
+.pr-choice { position: relative; grid-column: span 2; cursor: pointer; }
+.pr-choice:nth-child(n+4) { grid-column: span 3; }
+
+.pr-choice input {
+	position: absolute;
+	inset: 0;
+	opacity: 0;
+	margin: 0;
+	cursor: pointer;
+}
+
+.pr-choice span {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: .6rem;
+	padding: 1.1rem .75rem;
+	border: 1px solid var(--rule);
+	border-radius: 2px;
+	font-size: .72rem;
+	font-weight: 600;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	text-align: center;
+	color: rgba(255,255,255,.8);
+	transition: border-color var(--slow) var(--ease), background var(--slow) var(--ease), color var(--slow) var(--ease);
+}
+
+.pr-choice span i { font-size: 1.3rem; color: var(--sand); }
+
+.pr-choice:hover span { border-color: var(--hairline-sand); }
+.pr-choice input:checked + span { background: var(--coastal); border-color: var(--coastal); color: #FFFFFF; }
+.pr-choice input:checked + span i { color: #FFFFFF; }
+.pr-choice input:focus-visible + span { outline: 2px solid var(--turquoise); outline-offset: 3px; }
+
+/* ---- Footer: same layout as the Los Grandes footer, centered and stacked ---- */
+
+.pr-footer {
+	position: relative;
+	background: var(--black);
+	padding: clamp(4.5rem, 9vw, 6.5rem) 0 2rem;
+}
+
+.pr-footer-top {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.75rem;
+	margin-bottom: 4rem;
+	text-align: center;
+}
+
+.pr-footer-logo { height: 6rem; width: auto; }
+
+.pr-footer-top .pr-eyebrow { margin: 0; font-family: var(--sans); }
+
+/* Round social icons, as on the Los Grandes footer. */
+.pr-footer-social { display: flex; gap: 1.25rem; }
+
+.pr-footer-social a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 3rem;
+	height: 3rem;
+	border: 1px solid var(--rule);
+	border-radius: 50%;
+	color: var(--sand);
+	font-size: 1.1rem;
+	text-decoration: none;
+	transition: background var(--slow) var(--ease), color var(--slow) var(--ease), border-color var(--slow) var(--ease), transform var(--slow) var(--ease);
+}
+
+.pr-footer-social a:hover { background: var(--coastal); border-color: var(--coastal); color: #FFFFFF; transform: translateY(-3px); }
+.pr-footer-social a:focus-visible { outline: 2px solid var(--turquoise); outline-offset: 3px; }
+
+.pr-footer-info {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.25rem;
+	font-size: .95rem;
+}
+
+.pr-footer-info a {
+	display: inline-flex;
+	align-items: center;
+	gap: .5rem;
+	color: #FFFFFF;
+	text-decoration: none;
+	transition: color .25s var(--ease);
+}
+
+.pr-footer-info a:hover { color: var(--sand); }
+.pr-footer-info i { color: var(--sand); }
+
+.pr-footer-address { font-family: var(--serif); font-size: 1.15rem; }
+
+.pr-footer-hours {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	line-height: 1.9;
+	color: rgba(255,255,255,.72);
+}
+
+.pr-footer-hours span { margin-right: .4rem; font-weight: 600; color: var(--sand); }
+
+.pr-footer-contact {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: .5rem 2.5rem;
+}
+
+.pr-footer-meta {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.5rem;
+	padding-top: 2.5rem;
+	border-top: 1px solid var(--rule);
+	text-align: center;
+	font-size: .8rem;
+	color: rgba(255,255,255,.65);
+}
+
+.pr-footer-meta img { width: 110px; height: auto; opacity: .85; transition: opacity .3s var(--ease); }
+.pr-footer-meta a:hover img { opacity: 1; }
+
+/* ---- Floating WhatsApp (same spot as on Los Grandes) --------------------------------- */
+
+.pr-fab {
+	position: fixed;
+	right: 2rem;
+	bottom: 2rem;
+	z-index: 60;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 3.6rem;
+	height: 3.6rem;
+	border-radius: 50%;
+	background: var(--black);
+	border: 2px solid var(--coastal);
+	box-shadow: 0 4px 16px rgba(0,0,0,.5);
+	transition: transform .3s var(--ease), background .3s var(--ease);
+}
+
+.pr-fab:hover { transform: translateY(-4px); background: var(--coastal); }
+.pr-fab:focus-visible { outline: 2px solid var(--turquoise); outline-offset: 4px; }
+.pr-fab img { width: 1.9rem; }
+
+@media (max-width: 520px) { .pr-fab { right: 1.25rem; bottom: 1.25rem; } }
+
+/* ---- Reveal on scroll ---------------------------------------------------------------
+   Slow fade-up as content enters the viewport. Only applies when JS is
+   running (html.js), so content is never hidden without it. */
+
+.js .pr-reveal {
+	opacity: 0;
+	transform: translateY(28px);
+	transition: opacity 1.2s var(--ease), transform 1.2s var(--ease);
+}
+
+.js .pr-reveal.is-visible { opacity: 1; transform: none; }
+
+/* Stagger the hero lines slightly. */
+.pr-hero-content .pr-reveal:nth-child(2) { transition-delay: .12s; }
+.pr-hero-content .pr-reveal:nth-child(3) { transition-delay: .24s; }
+.pr-hero-content .pr-reveal:nth-child(4) { transition-delay: .36s; }
+.pr-hero-content .pr-reveal:nth-child(5) { transition-delay: .48s; }
+
+/* ---- Responsive ------------------------------------------------------------------------ */
+
+@media (max-width: 900px) {
+	.pr-hero::before { background: linear-gradient(to top, var(--black) 0, rgba(5,5,5,0) 140px), linear-gradient(180deg, rgba(5,5,5,.88), rgba(5,5,5,.72)); }
+	.pr-visit { grid-template-columns: 1fr; }
+	.pr-menu-grid { grid-template-columns: 1fr; }
+	.pr-band { background: linear-gradient(180deg, rgba(5,5,5,.35), rgba(5,5,5,.85)), url("../img/gallery/8.jpg") 65% center / cover no-repeat; align-items: flex-end; padding-bottom: 3rem; }
+	.pr-join { grid-template-columns: 1fr; }
+	.pr-form { margin-right: 12px; }
+	.pr-visit-map { min-height: 280px; }
+	.pr-framed { margin-right: 12px; }
+	.pr-framed::after { transform: translate(12px, 12px); }
+}
+
+@media (max-width: 520px) {
+	.pr-pillars { flex-direction: column; gap: .6rem; font-size: .75rem; }
+	.pr-pillars li + li::before { content: none; }
+	.pr-hero-actions .pr-btn { flex: 1 1 100%; }
+	.pr-hours li { font-size: .75rem; letter-spacing: .1em; }
+	.pr-form-row { grid-template-columns: minmax(0, 1fr); gap: 0; }
+	.pr-choice-grid { grid-template-columns: minmax(0, 1fr); }
+	.pr-choice, .pr-choice:nth-child(n+4) { grid-column: auto; }
+	.pr-choice span { flex-direction: row; justify-content: flex-start; padding: .9rem 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html { scroll-behavior: auto; }
+	.pr-hero-video { display: none; }
+	.pr-hero-video { animation: none; }
+	.pr-menu-card::before { transition: none; }
+	.js .pr-reveal { opacity: 1; transform: none; transition: none; }
+	.pr-btn, .pr-btn i, .pr-nav-links { transition: none; }
+}

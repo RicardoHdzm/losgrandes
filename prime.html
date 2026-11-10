@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<script>document.documentElement.classList.add('js');</script>
+	<meta property="og:title" content="Los Grandes Prime | Mariscos, Cortes Prime y Pasta">
+	<meta property="og:description" content="Mariscos frescos, cortes prime y pasta. La energía de Los Grandes se encuentra con una experiencia más elevada. Próximamente en Roseville, MN, enero 2027.">
+	<meta property="og:image" content="https://losgrandesrestaurants.com/img/logos/meta-prime.jpg">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:url" content="https://losgrandesrestaurants.com/prime">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Los Grandes Prime | Mariscos, Cortes Prime y Pasta</title>
+	<meta name="description" content="Mariscos frescos, cortes prime y pasta. La energía de Los Grandes se encuentra con una experiencia más elevada. Próximamente en Roseville, MN, enero 2027.">
+
+	<link rel="icon" href="img/logos/favicon-prime.png">
+	<link rel="apple-touch-icon" href="img/logos/favicon-prime.png">
+	<meta name="theme-color" content="#050505">
+	<link rel="stylesheet" href="fontawesome/css/fontawesome.min.css">
+	<link rel="stylesheet" href="fontawesome/css/brands.min.css">
+	<link rel="stylesheet" href="fontawesome/css/solid.min.css">
+	<link rel="stylesheet" href="css/prime.css">
+</head>
+<body>
+
+	<!-- ============ NAV ============ -->
+	<nav class="pr-nav" id="prNav" aria-label="Principal">
+		<a class="pr-nav-logo" href="prime" aria-label="Los Grandes Prime, inicio"><img src="img/logos/grandes-logo-prime.png" alt="Los Grandes Prime"></a>
+
+		<ul class="pr-nav-links" id="prNavLinks">
+			<li><a href="#concepto">El Concepto</a></li>
+			<li><a href="#menu">Menú</a></li>
+			<li><a href="#visitanos">Visítanos</a></li>
+			<li><a href="#equipo">Únete</a></li>
+			<li><a href="losgrandes">Los Grandes</a></li>
+			<li><a class="pr-btn pr-btn-solid pr-nav-cta" href="#reservaciones">Reservar</a></li>
+		</ul>
+
+		<button class="pr-nav-toggle" id="prNavToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="prNavLinks">
+			<span class="pr-burger"></span>
+		</button>
+	</nav>
+
+	<!-- ============ HERO ============ -->
+	<header class="pr-hero">
+		<video class="pr-hero-video" autoplay muted loop playsinline preload="auto" poster="img/video/prime-poster.jpg" aria-hidden="true">
+			<source src="img/video/prime-hero.mp4" type="video/mp4">
+		</video>
+		<div class="pr-container pr-hero-content">
+			<span class="pr-eyebrow pr-reveal">Próximamente &middot; Enero 2027</span>
+			<h1 class="pr-reveal">Entre Olas y <em>Brasas</em></h1>
+			<p class="pr-hero-sub pr-reveal">Frescura del mar. Carácter de la brasa.</p>
+			<ul class="pr-pillars pr-reveal">
+				<li>Mariscos Frescos</li>
+				<li>Cortes Prime</li>
+				<li>Pasta</li>
+			</ul>
+			<div class="pr-hero-actions pr-reveal">
+				<a class="pr-btn pr-btn-solid" href="#reservaciones"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i> Reservar</a>
+				<a class="pr-btn pr-btn-light" href="#menu">Ver Menú</a>
+			</div>
+		</div>
+	</header>
+
+	<!-- ============ CONCEPT ============ -->
+	<section class="pr-section pr-section-black pr-section-first" id="concepto">
+		<div class="pr-container pr-concept pr-reveal">
+			<span class="pr-eyebrow"><span class="pr-num">01</span> El Concepto</span>
+			<h2>Un Original Costero, <em>Reinventado</em></h2>
+			<p class="pr-lede">La energía de siempre de Los Grandes se encuentra con una experiencia gastronómica más elevada.</p>
+			<p>Un concepto premium, vibrante y cercano, construido alrededor de la frescura, la hospitalidad generosa y platillos memorables. Mariscos que brillan, cortes al punto y pasta con sabor costero, en un ambiente más relajado y sofisticado.</p>
+			<a class="pr-btn pr-btn-light" href="#menu">Ver Menú <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+		</div>
+	</section>
+
+	<!-- ============ MENU ============ -->
+	<section class="pr-section pr-section-charcoal" id="menu">
+		<div class="pr-container">
+			<div class="pr-section-header pr-reveal">
+				<span class="pr-eyebrow"><span class="pr-num">02</span> Nuestro Menú</span>
+				<h2>Del Mar y la Parrilla, a tu <em>Mesa</em></h2>
+				<p>Los clásicos de Los Grandes, elevados. Los menús completos estarán disponibles en la apertura.</p>
+			</div>
+
+			<!-- Menu cards. Once the PDFs exist, turn each <div> into
+			     <a class="pr-menu-card ..." href="prime-platillos.pdf" target="_blank" rel="noopener">
+			     and change "Próximamente" to "Ver Menú". -->
+			<div class="pr-menu-grid">
+				<div class="pr-menu-card pr-menu-platillos pr-reveal">
+					<span class="pr-menu-kicker">Mariscos &middot; Cortes Prime &middot; Pasta</span>
+					<h3>Platillos</h3>
+					<span class="pr-menu-cta">Próximamente</span>
+				</div>
+				<div class="pr-menu-card pr-menu-bebidas pr-reveal">
+					<span class="pr-menu-kicker">Coctelería &middot; Bar</span>
+					<h3>Bebidas</h3>
+					<span class="pr-menu-cta">Próximamente</span>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ============ PHOTO BAND ============ -->
+	<!-- Full-width photo pause between sections. Uses a Los Grandes gallery
+	     photo for now; swap the image in css/prime.css (.pr-band) for a Prime
+	     photo of the venue or bar when available. -->
+	<div class="pr-band" role="img" aria-label="Servicio en la barra de Los Grandes">
+		<div class="pr-container pr-band-content pr-reveal">
+			<p class="pr-band-quote">Hospitalidad generosa,<br>platillos memorables.</p>
+		</div>
+	</div>
+
+	<!-- ============ VISIT ============ -->
+	<section class="pr-section pr-section-black" id="visitanos">
+		<div class="pr-container pr-visit">
+			<div class="pr-visit-info pr-reveal">
+				<span class="pr-eyebrow"><span class="pr-num">03</span> Visítanos</span>
+				<h2>Horario &amp; <em>Ubicación</em></h2>
+
+				<ul class="pr-hours">
+					<li><span>Apertura</span><span>Enero 2027</span></li>
+					<li><span>Lun &ndash; Mar</span><span>11am &ndash; 11pm</span></li>
+					<li><span>Mié, Jue y Dom</span><span>11am &ndash; 12am</span></li>
+					<li><span>Vie &ndash; Sáb</span><span>11am &ndash; 2am</span></li>
+				</ul>
+
+				<a class="pr-address" href="https://www.google.com/maps/search/?api=1&amp;query=2801+Snelling+Ave+Roseville+MN+55113" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> 2801 Snelling Ave, Roseville, MN 55113</a>
+
+				<a class="pr-btn pr-btn-light" href="https://www.google.com/maps/dir/?api=1&amp;destination=2801+Snelling+Ave+Roseville+MN+55113" target="_blank" rel="noopener"><i class="fa-solid fa-diamond-turn-right" aria-hidden="true"></i> Cómo Llegar</a>
+			</div>
+
+			<div class="pr-visit-map pr-framed pr-reveal">
+				<iframe src="https://www.google.com/maps?q=2801+Snelling+Ave,+Roseville,+MN+55113&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación de Los Grandes Prime: 2801 Snelling Ave, Roseville, MN 55113"></iframe>
+			</div>
+		</div>
+	</section>
+
+	<!-- ============ RESERVATIONS ============ -->
+	<section class="pr-section pr-section-ocean" id="reservaciones">
+		<div class="pr-container pr-reserve pr-reveal">
+			<span class="pr-eyebrow"><span class="pr-num">04</span> Reservaciones</span>
+			<h2>Aquí se Viene a Comer en <em>Grande</em></h2>
+			<p>Las reservaciones abrirán muy pronto. Para eventos, grupos o cualquier pregunta, contáctanos y con gusto te atendemos.</p>
+			<div class="pr-reserve-actions">
+				<a class="pr-btn pr-btn-solid" href="tel:6122724891"><i class="fa-solid fa-phone" aria-hidden="true"></i> (612) 272-4891</a>
+				<a class="pr-btn pr-btn-light" href="mailto:info@losgrandesrestaurants.com"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Escríbenos</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- ============ JOIN THE TEAM ============ -->
+	<section class="pr-section pr-section-black" id="equipo">
+		<div class="pr-container pr-join">
+			<div class="pr-join-text pr-reveal">
+				<span class="pr-eyebrow"><span class="pr-num">05</span> Únete al Equipo</span>
+				<h2>Sé Parte de <em>Prime</em></h2>
+				<p class="pr-lede">Estamos formando el equipo que abrirá Los Grandes Prime en Roseville.</p>
+				<p>Buscamos personas apasionadas por la hospitalidad, el detalle y la buena mesa. Si quieres crecer con nosotros desde el primer día, cuéntanos de ti.</p>
+			</div>
+
+			<!-- Shares the Los Grandes job form on Formspree; the hidden fields tag
+			     every submission as Prime so they can be told apart. -->
+			<form class="pr-form pr-framed pr-reveal" action="https://formspree.io/f/mleqonaq" method="POST">
+				<input type="hidden" name="Restaurante" value="Los Grandes Prime">
+				<input type="hidden" name="_subject" value="Solicitud de empleo - Los Grandes Prime">
+
+				<div class="pr-form-row">
+					<div class="pr-field">
+						<label for="joinName">Nombre</label>
+						<input type="text" name="Name" id="joinName" placeholder="Tu nombre" autocomplete="name" required>
+					</div>
+					<div class="pr-field">
+						<label for="joinEmail">Correo Electrónico</label>
+						<input type="email" name="Email" id="joinEmail" placeholder="tu@correo.com" autocomplete="email" required>
+					</div>
+				</div>
+
+				<div class="pr-field">
+					<label for="joinPhone">Número de Teléfono</label>
+					<input type="tel" name="Phone" id="joinPhone" placeholder="(000) 000-0000" autocomplete="tel" required>
+				</div>
+
+				<fieldset class="pr-field pr-choices">
+					<legend>Puesto de Interés</legend>
+					<div class="pr-choice-grid">
+						<label class="pr-choice">
+							<input type="radio" name="puesto" value="admin" required>
+							<span><i class="fa-solid fa-briefcase" aria-hidden="true"></i> Administrativo</span>
+						</label>
+						<label class="pr-choice">
+							<input type="radio" name="puesto" value="cook">
+							<span><i class="fa-solid fa-kitchen-set" aria-hidden="true"></i> Cocinero</span>
+						</label>
+						<label class="pr-choice">
+							<input type="radio" name="puesto" value="waiter">
+							<span><i class="fa-solid fa-bell-concierge" aria-hidden="true"></i> Mesero/a</span>
+						</label>
+						<label class="pr-choice">
+							<input type="radio" name="puesto" value="bartender">
+							<span><i class="fa-solid fa-martini-glass-citrus" aria-hidden="true"></i> Bartender</span>
+						</label>
+						<label class="pr-choice">
+							<input type="radio" name="puesto" value="host">
+							<span><i class="fa-solid fa-user-tie" aria-hidden="true"></i> Host</span>
+						</label>
+					</div>
+				</fieldset>
+
+				<button type="submit" class="pr-btn pr-btn-solid"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Enviar Solicitud</button>
+			</form>
+		</div>
+	</section>
+
+	<!-- ============ FOOTER ============ -->
+	<footer class="pr-footer">
+		<!-- Same structure as the Los Grandes footer: logo, contact heading,
+		     address, short hours, phone/email, then Alto Group + copyright. -->
+		<div class="pr-container">
+			<div class="pr-footer-top">
+				<img class="pr-footer-logo" src="img/logos/grandes-logo-prime.png" alt="Los Grandes Prime" loading="lazy" decoding="async">
+
+				<h3 class="pr-eyebrow">Contáctanos</h3>
+				<div class="pr-footer-social">
+					<a href="https://www.facebook.com/profile.php?id=100057538985577&amp;locale=es_LA" target="_blank" rel="noopener" aria-label="Los Grandes en Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+					<a href="https://www.instagram.com/losgrandesmn" target="_blank" rel="noopener" aria-label="Los Grandes en Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+					<a href="https://www.tiktok.com/@losgrandes.mn" target="_blank" rel="noopener" aria-label="Los Grandes en TikTok"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+				</div>
+
+
+				<div class="pr-footer-info">
+					<a class="pr-footer-address" href="https://www.google.com/maps/search/?api=1&amp;query=2801+Snelling+Ave+Roseville+MN+55113" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> 2801 Snelling Ave, Roseville, MN 55113</a>
+					<ul class="pr-footer-hours">
+						<li><span>Lun &ndash; Mar</span> 11am &ndash; 11pm</li>
+						<li><span>Mié, Jue y Dom</span> 11am &ndash; 12am</li>
+						<li><span>Vie &ndash; Sáb</span> 11am &ndash; 2am</li>
+					</ul>
+					<div class="pr-footer-contact">
+						<a href="tel:6122724891"><i class="fa-solid fa-phone" aria-hidden="true"></i> (612) 272-4891</a>
+						<a href="mailto:info@losgrandesrestaurants.com"><i class="fa-solid fa-envelope" aria-hidden="true"></i> info@losgrandesrestaurants.com</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="pr-footer-meta">
+				<a href="https://altogroupmn.com" target="_blank" rel="noopener"><img src="img/logos/alto.png" alt="Alto Group" loading="lazy" decoding="async"></a>
+				<span>&copy; 2026 Los Grandes Prime &middot; Todos los derechos reservados &middot; Diseño por JRHM.STUDIO</span>
+			</div>
+		</div>
+	</footer>
+
+	<a class="pr-fab" href="https://wa.me/16122724891" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+		<img src="img/logos/whatsapp.png" alt="" aria-hidden="true">
+	</a>
+
+	<script>
+		const prNav = document.getElementById('prNav');
+		const onScroll = function () { prNav.classList.toggle('scrolled', window.scrollY > 40); };
+		window.addEventListener('scroll', onScroll, { passive: true });
+		onScroll();
+
+		const prToggle = document.getElementById('prNavToggle');
+		const prLinks = document.getElementById('prNavLinks');
+		prToggle.addEventListener('click', function () {
+			const isOpen = prLinks.classList.toggle('open');
+			document.documentElement.classList.toggle('pr-menu-open', isOpen);
+			prToggle.classList.toggle('is-active', isOpen);
+			prToggle.setAttribute('aria-expanded', isOpen);
+		});
+		prLinks.querySelectorAll('a').forEach(function (link) {
+			link.addEventListener('click', function () {
+				prLinks.classList.remove('open');
+				document.documentElement.classList.remove('pr-menu-open');
+				prToggle.classList.remove('is-active');
+				prToggle.setAttribute('aria-expanded', false);
+			});
+		});
+
+		// Slow fade-up as content enters the viewport (skipped with reduced motion).
+		const revealItems = document.querySelectorAll('.pr-reveal');
+		if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+			revealItems.forEach(function (el) { el.classList.add('is-visible'); });
+		} else {
+			const revealObserver = new IntersectionObserver(function (entries) {
+				entries.forEach(function (entry) {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('is-visible');
+						revealObserver.unobserve(entry.target);
+					}
+				});
+			}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+			revealItems.forEach(function (el) { revealObserver.observe(el); });
+		}
+	</script>
+</body>
+</html>

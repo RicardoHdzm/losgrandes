@@ -111,6 +111,7 @@ h1, h2, h3 {
 	font-weight: 400;
 	color: var(--heading);
 	line-height: 1.25;
+	text-wrap: balance;
 }
 
 h1 { font-size: clamp(2.5rem, 5.5vw, 5rem); }

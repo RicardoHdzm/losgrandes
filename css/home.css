@@ -1,0 +1,268 @@
+/* ==========================================================================
+   LOS GRANDES — Brand selector (site root)
+   Two halves: the original Los Grandes (fresh, coastal, playful) and
+   Los Grandes Prime (deeper blues, serif type, more formal). Each half
+   borrows its own brand's look so visitors feel the difference before
+   they click. Self-contained: does not load style.css.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Hanken+Grotesk:wght@500;600;700&display=swap');
+
+@font-face {
+	font-family: Pacifico;
+	src: url(../fonts/Pacifico-Regular.ttf);
+	font-display: swap;
+}
+
+:root {
+	/* Los Grandes */
+	--lg-blue: #005198;
+	--lg-blue-deep: #003A6E;
+	--lg-aqua: #5AC7D0;
+	--lg-sand: #E3D6BB;
+
+	/* Los Grandes Prime (brandbook "Sunlit coastal color") */
+	--pr-black: #050505;
+	--pr-coastal: #157CC0;
+	--pr-sand: #E6D3A3;
+
+	--ease: cubic-bezier(.16,.84,.44,1);
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+	margin: 0;
+	background: var(--pr-black);
+	color: #FFFFFF;
+	font-family: 'Hanken Grotesk', sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+
+.nowrap { white-space: nowrap; }
+
+/* ---- Layout ---------------------------------------------------------------- */
+
+.picker {
+	display: flex;
+	min-height: 100svh;
+}
+
+.picker-panel {
+	position: relative;
+	flex: 1 1 50%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 1.5rem;
+	padding: 7rem clamp(1.5rem, 5vw, 4rem) 6rem;
+	text-align: center;
+	text-decoration: none;
+	overflow: hidden;
+	isolation: isolate;
+	transition: flex-grow .6s var(--ease), filter .6s var(--ease);
+}
+
+/* On wide screens the hovered side grows a little and the other dims. */
+@media (hover: hover) and (min-width: 901px) {
+	.picker:hover .picker-panel { filter: saturate(.75) brightness(.8); }
+	.picker .picker-panel:hover { flex-grow: 1.25; filter: none; }
+}
+
+.picker-panel:focus-visible { outline: 3px solid #FFFFFF; outline-offset: -6px; }
+
+/* ---- Shared bits ------------------------------------------------------------- */
+
+.picker-eyebrow {
+	font-size: .75rem;
+	font-weight: 700;
+	letter-spacing: .32em;
+	text-transform: uppercase;
+}
+
+.picker-cta {
+	display: inline-flex;
+	align-items: center;
+	gap: .65rem;
+	margin-top: .5rem;
+	padding: 1rem 2rem;
+	font-size: .85rem;
+	font-weight: 800;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+	transition: background .35s var(--ease), color .35s var(--ease), transform .35s var(--ease);
+}
+
+.picker-panel:hover .picker-cta { transform: translateY(-2px); }
+.picker-cta i { transition: transform .35s var(--ease); }
+.picker-panel:hover .picker-cta i { transform: translateX(4px); }
+
+/* ---- Los Grandes half: photo under blue, script type, pill button ------------ */
+
+.picker-lg {
+	background: var(--lg-blue-deep);
+	font-family: 'Nunito', sans-serif;
+}
+
+.picker-lg::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: -2;
+	background: url("../img/banners/wc.jpeg") center / cover no-repeat;
+	transition: transform 1.2s var(--ease);
+}
+
+.picker-lg::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background:
+		radial-gradient(ellipse 70% 50% at 50% 0%, rgba(90,199,208,.25), transparent 70%),
+		linear-gradient(180deg, rgba(0,81,152,.68), rgba(0,58,110,.9));
+}
+
+.picker-lg:hover::before { transform: scale(1.05); }
+
+.picker-lg .picker-logo { height: clamp(5.5rem, 12vw, 8rem); width: auto; }
+.picker-lg .picker-eyebrow { color: var(--lg-aqua); font-family: 'Nunito', sans-serif; }
+
+.picker-lg h2 {
+	margin: 0;
+	font-family: Pacifico, cursive;
+	font-weight: 400;
+	font-size: clamp(2rem, 3.6vw, 3rem);
+	line-height: 1.25;
+}
+
+.picker-lg p { margin: 0; max-width: 32ch; color: var(--lg-sand); font-size: 1.05rem; line-height: 1.7; font-weight: 500; }
+
+.picker-lg .picker-cta {
+	border-radius: 999px;
+	background: var(--lg-aqua);
+	color: var(--lg-blue-deep);
+	font-family: 'Nunito', sans-serif;
+}
+
+.picker-lg:hover .picker-cta { background: #FFFFFF; }
+
+/* ---- Prime half: same look as the Prime site (black, light serif, quiet
+   labels, champagne details, coastal-blue button, film grain) -------------- */
+
+.picker-prime {
+	background:
+		radial-gradient(ellipse 80% 60% at 50% 35%, rgba(255,255,255,.035), transparent 75%),
+		var(--pr-black);
+}
+
+/* Film grain, as on the Prime site. */
+.picker-prime::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	pointer-events: none;
+	opacity: .07;
+	background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
+.picker-prime .picker-eyebrow {
+	color: rgba(255,255,255,.62);
+	font-family: 'Hanken Grotesk', sans-serif;
+	font-weight: 600;
+	font-size: .7rem;
+	letter-spacing: .34em;
+}
+
+.picker-prime h2 {
+	margin: 0;
+	font-family: 'Fraunces', serif;
+	font-weight: 400;
+	font-size: clamp(2rem, 3.4vw, 2.9rem);
+	line-height: 1.1;
+	color: #FFFFFF;
+}
+
+.picker-prime h2 em { font-style: italic; }
+
+.picker-pillars {
+	margin: 0;
+	color: var(--pr-sand);
+	font-size: .72rem;
+	font-weight: 600;
+	letter-spacing: .3em;
+	text-transform: uppercase;
+}
+
+.picker-pillars span { color: rgba(230,211,163,.4); margin: 0 .6em; }
+
+.picker-prime .picker-cta {
+	border: 1px solid var(--pr-coastal);
+	border-radius: 2px;
+	background: var(--pr-coastal);
+	color: #FFFFFF;
+	font-family: 'Hanken Grotesk', sans-serif;
+	font-weight: 700;
+	letter-spacing: .16em;
+	transition: background .7s var(--ease), color .7s var(--ease), border-color .7s var(--ease), transform .7s var(--ease);
+}
+
+.picker-prime:hover .picker-cta { background: #FFFFFF; border-color: #FFFFFF; color: var(--pr-black); }
+
+.picker-prime .picker-logo { height: clamp(6.5rem, 14vw, 9.5rem); width: auto; }
+
+/* ---- Header and footer overlay ---------------------------------------------- */
+
+.picker-header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 5;
+	padding: 1.75rem 1rem;
+	text-align: center;
+	pointer-events: none;
+}
+
+.picker-header h1 {
+	margin: 0;
+	font-size: .78rem;
+	font-weight: 700;
+	letter-spacing: .32em;
+	text-transform: uppercase;
+	color: rgba(255,255,255,.85);
+}
+
+.picker-footer {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 5;
+	padding: 1.25rem 1rem;
+	text-align: center;
+	font-size: .75rem;
+	color: rgba(255,255,255,.65);
+}
+
+.picker-footer a { text-decoration: none; color: #FFFFFF; }
+
+/* ---- Mobile: stack the two halves ------------------------------------------- */
+
+@media (max-width: 900px) {
+	.picker { flex-direction: column; }
+	.picker-panel { min-height: 50svh; padding: 5rem 1.5rem 4rem; gap: 1.1rem; }
+	.picker-lg { padding-top: 6rem; }
+	.picker-footer { position: static; background: var(--pr-black); }
+	.picker-lg p { font-size: .98rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.picker-panel, .picker-lg::before, .picker-cta, .picker-cta i { transition: none; }
+}
